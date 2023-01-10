@@ -236,7 +236,10 @@ MonoBehaviour:
   playerPosition: {x: 0, y: 0, z: 0}
   swortMeshRenderer: {fileID: 2245452350420030629}
   swortBoxCollider: {fileID: 2245452350420030628}
+  maxstarAmont: 3
+  starBar: {fileID: 0}
   ninjaStar: {fileID: 4585312450681017159, guid: ae32270169e7ad4459ea836409c0c0ee, type: 3}
+  gotStar: 0
   canThrow: 1
   throwTime: 0.8
   smoke: {fileID: 2642252908749197785, guid: 158cd1dfdecf4a74b8352fa2323c3d23, type: 3}
@@ -262,7 +265,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 3
   deathmenu: {fileID: 0}
+  blink: {fileID: 0}
   _healthBar: {fileID: 0}
+  canbedamaged: 1
   player: {fileID: 7777790188044410233}
 --- !u!1 &9089861773668170088
 GameObject:

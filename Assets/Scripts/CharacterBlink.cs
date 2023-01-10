@@ -8,20 +8,21 @@ public class CharacterBlink : MonoBehaviour
     public float BlinkingTime = .15f;
     public float TimeInterval = .05f;
     public PlayerHealth play;
-    public void tookDamage()
-    {
-        StartCoroutine(Flash(BlinkingTime, TimeInterval));
-    }
-
     private void Start()
     {
         play = this.GetComponent<PlayerHealth>();
+        
+    }
+    public void tookDamage()
+    {
+        StartCoroutine(Flash(BlinkingTime, TimeInterval));
     }
 
     IEnumerator Flash(float time, float intervalTime)
     {
         //t$$anonymous$$s counts up time until the float set in BlinkingTime
         float elapsedTime = 0f;
+        GameObject playerSprite = GameObject.FindWithTag("NagatoSprite");
         //T$$anonymous$$s repeats our coroutine until the Flas$$anonymous$$ngTime is elapsed
         while (elapsedTime < time)
         {
@@ -32,7 +33,7 @@ public class CharacterBlink : MonoBehaviour
             //turns off all the Renderers
             // foreach (Renderer r in RendererArray)
             // r.enabled = false;
-            GameObject playerSprite = GameObject.FindWithTag("NagatoSprite");
+            
             playerSprite.GetComponent<Image>().enabled = false;
             
             //then add time to elapsedtime

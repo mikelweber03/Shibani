@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 
 
@@ -15,10 +16,12 @@ public class PlayerHealth : MonoBehaviour
     public CheckHealth _healthBar;
     public bool canbedamaged = true;
     public GameObject player;
+    private VisualEffect playerHit;
     void Start()
     {
         _currentHealth = _maxHealth;
         blink = this.GetComponent<CharacterBlink>();
+        playerHit = this.GetComponent<VisualEffect>();
     }
 
     public bool CanBeDamaged()
@@ -45,11 +48,12 @@ public class PlayerHealth : MonoBehaviour
             {
                 Destroy(other.gameObject);
                 canbedamaged = false;
+                playerHit.Play();
                 _currentHealth--;
                 _healthBar.ChangeHealth(_currentHealth);
 
             }
-            else
+            else if (_currentHealth == 1)
             {
                 Destroy(other.gameObject);
                 _currentHealth--;
@@ -69,9 +73,12 @@ public class PlayerHealth : MonoBehaviour
             if (_currentHealth > 1 && CanBeDamaged() == true) 
             {
                 _currentHealth--;
+                playerHit.Play();
                 canbedamaged = false;
                 blink.tookDamage();
                 _healthBar.ChangeHealth(_currentHealth);
+                Debug.Log("Succ");
+                return;
                 
             }
             else if (_currentHealth == 1)
