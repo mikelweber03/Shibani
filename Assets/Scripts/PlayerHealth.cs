@@ -69,7 +69,7 @@ public class PlayerHealth : MonoBehaviour
             if (_currentHealth > 1 && CanBeDamaged() == true) 
             {
                 _currentHealth--;
-                canbedamaged = false
+                canbedamaged = false;
                 blink.tookDamage();
                 _healthBar.ChangeHealth(_currentHealth);
                 

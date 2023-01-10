@@ -26,20 +26,24 @@ public class CharacterBlink : MonoBehaviour
         while (elapsedTime < time)
         {
             // gets an array with all the renderers in our gameobject
-            Renderer[] RendererArray = GetComponents<Renderer>();
+            //Renderer[] RendererArray = GetComponents<Renderer>();
+            
             play.canbedamaged = false;
             //turns off all the Renderers
-            foreach (Renderer r in RendererArray)
-                r.enabled = false;
-            //then add time to elapsedtime
+            // foreach (Renderer r in RendererArray)
+            // r.enabled = false;
+            GameObject playerSprite = GameObject.FindWithTag("NagatoSprite");
+            playerSprite.GetComponent<Image>().enabled = false;
             
+            //then add time to elapsedtime
+
             elapsedTime += Time.deltaTime;
             //then wait for the Timeinterval set
             yield return new WaitForSeconds(intervalTime);
             //then turn them all back on
-            foreach (Renderer r in RendererArray)
-                r.enabled = true;
-            
+            // foreach (Renderer r in RendererArray)
+            //r.enabled = true;
+            playerSprite.GetComponent<Image>().enabled = true;
             elapsedTime += Time.deltaTime;
             //then wait for another interval of time
             yield return new WaitForSeconds(intervalTime);
