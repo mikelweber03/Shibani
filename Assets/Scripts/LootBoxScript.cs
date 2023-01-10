@@ -5,7 +5,7 @@ using UnityEngine;
 public class LootBoxScript : MonoBehaviour
 {
 
-    private int health = 3;
+    private int health;
 
     public AudioSource Boxhit;
 
@@ -23,7 +23,7 @@ public class LootBoxScript : MonoBehaviour
 
     {
 
-
+        health = 3;
 
     }
 
