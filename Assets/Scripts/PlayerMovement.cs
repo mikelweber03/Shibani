@@ -22,7 +22,14 @@ public class PlayerMovement : MonoBehaviour
 
 
     [SerializeField]
-    private float movementSpeed = 15f;
+    [Header("Horizontal Movement")]
+    private float movementSpeed = 20f;
+
+    public float acceleration;
+
+    public float decceleration;
+
+    public float velPower;
 
     private float jumpForce = 26f;
 
@@ -126,7 +133,25 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+    private void FixedUpdate()
+    {
+        if (!isOnWall && grounded && !dashBlock)
+        {
+            float targetSpeed = horizontalInput * movementSpeed;
 
+            float speedDif = targetSpeed - playerRb.velocity.x;
+
+            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+
+            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+
+            playerRb.AddForce(movement * Vector3.right);
+
+            Debug.Log(movement * Vector3.right);
+        }
+            
+
+    }
 
     void Update()
 
@@ -189,7 +214,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
 
 
-
+                Debug.Log("passiert hier was ?");
             }
 
 
@@ -220,15 +245,15 @@ public class PlayerMovement : MonoBehaviour
 
         // Player Movement HorizontalInput 
 
-        if (!isOnWall && grounded && !dashBlock)
+        if (!isOnWall && grounded && !dashBlock) //&& (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
 
         {
-            Vector3  movementDirection;
-            movementDirection = new Vector3(1 * movementSpeed * Time.deltaTime, 0, 0);
-            //playerRb.AddForce(movementDirection, ForceMode.Acceleration);
-            Debug.Log(Vector3.right);
+            //Vector3 movementDirection;
+            //movementDirection = new Vector3(1 * movementSpeed * Time.deltaTime, 0, 0);
+            //playerRb.AddRelativeForce(Vector3.right * movementSpeed * Time.deltaTime, ForceMode.Force);
+            //Debug.Log(Vector3.right * movementSpeed * movementSpeed * Time.deltaTime);
             //transform.Translate(movementDirection, Space.World); 
-            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World); 
+            //transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World); 
 
             //inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World); 
 
@@ -376,7 +401,7 @@ public class PlayerMovement : MonoBehaviour
 
     {
 
-        if (other.gameObject.CompareTag("StarPickUp") && other  != null)
+        if (other.gameObject.CompareTag("StarPickUp") && other != null)
 
         {
 
