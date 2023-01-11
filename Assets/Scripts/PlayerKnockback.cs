@@ -22,7 +22,7 @@ public class PlayerKnockback : MonoBehaviour
        playerRb.velocity = Vector3.zero;
        playerRb.angularVelocity = Vector3.zero;
        GameObject.Find("Nagato").GetComponent<PlayerMovement>().enabled = false;
-       playerRb.AddRelativeForce(-10, 10, 0, ForceMode.Impulse);
+       playerRb.AddRelativeForce(-8, 8, 0, ForceMode.Impulse);
        yield return new WaitForSeconds(falltime);
        GameObject.Find("Nagato").GetComponent<PlayerMovement>().enabled = true;
     }

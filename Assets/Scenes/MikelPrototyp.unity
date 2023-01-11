@@ -749,10 +749,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1776282551, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
-      propertyPath: blink
-      value: 
-      objectReference: {fileID: 1205386114}
-    - target: {fileID: 1776282551, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
       propertyPath: deathmenu
       value: 
       objectReference: {fileID: 2144274990}
@@ -808,20 +804,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nagato
       objectReference: {fileID: 0}
-    - target: {fileID: 9089861773036989796, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
-      propertyPath: velPower
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9089861773036989796, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
-      propertyPath: acceleration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9089861773036989796, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
-      propertyPath: decceleration
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7777790188044410232, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
 --- !u!4 &244228864 stripped
 Transform:
@@ -1903,11 +1886,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936915947}
   m_CullTransparentMesh: 1
---- !u!212 &999657418 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 9089861773668170094, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
-  m_PrefabInstance: {fileID: 244228863}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1059392198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2149,51 +2127,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7334732168433707483, guid: f39c5ea19ad4ab842b353163e550a9c6, type: 3}
   m_PrefabInstance: {fileID: 1191197440}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1205386107 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7777790188044410233, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
-  m_PrefabInstance: {fileID: 244228863}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1205386108 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1776282551, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
-  m_PrefabInstance: {fileID: 244228863}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205386107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88fce5cec7a1c3549a874879f7a507e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1205386114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205386107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48dff474ab382742bfc0f31575f5535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BlinkingTime: 0.12
-  TimeInterval: 0.1
-  play: {fileID: 1205386108}
-  nagatoSprite: {fileID: 999657418}
---- !u!114 &1205386115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205386107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8531bd7b4d93a08489ca3815b09a52f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  falltime: 2
 --- !u!1 &1217813836
 GameObject:
   m_ObjectHideFlags: 0

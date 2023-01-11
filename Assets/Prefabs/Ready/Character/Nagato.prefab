@@ -95,11 +95,12 @@ GameObject:
   - component: {fileID: 7777790188044410231}
   - component: {fileID: 7777790188044410228}
   - component: {fileID: 7777790188044410229}
-  - component: {fileID: 7777790188044410232}
   - component: {fileID: 7777790188044410225}
   - component: {fileID: 9089861773036989794}
   - component: {fileID: 9089861773036989796}
   - component: {fileID: 1776282551}
+  - component: {fileID: 1205386114}
+  - component: {fileID: 1205386115}
   m_Layer: 0
   m_Name: Nagato
   m_TagString: Player
@@ -175,19 +176,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7777790188044410232
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7777790188044410233}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7777790188044410225
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -234,6 +222,10 @@ MonoBehaviour:
   isOnGround: 1
   crouch: 0
   playerPosition: {x: 0, y: 0, z: 0}
+  movementSpeed: 20
+  acceleration: 2
+  decceleration: 2
+  velPower: 2
   swortMeshRenderer: {fileID: 2245452350420030629}
   swortBoxCollider: {fileID: 2245452350420030628}
   maxstarAmont: 3
@@ -263,12 +255,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fce5cec7a1c3549a874879f7a507e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3
+  maxHealth: 3
   deathmenu: {fileID: 0}
-  blink: {fileID: 0}
+  blink: {fileID: 1205386114}
   _healthBar: {fileID: 0}
   canbedamaged: 1
   player: {fileID: 7777790188044410233}
+--- !u!114 &1205386114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777790188044410233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48dff474ab382742bfc0f31575f5535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlinkingTime: 0.12
+  TimeInterval: 0.1
+  play: {fileID: 1776282551}
+  nagatoSprite: {fileID: 9089861773668170094}
+--- !u!114 &1205386115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777790188044410233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8531bd7b4d93a08489ca3815b09a52f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  falltime: 1.2
 --- !u!1 &9089861773668170088
 GameObject:
   m_ObjectHideFlags: 0
