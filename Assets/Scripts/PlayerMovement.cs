@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isOnGround = true;
     public bool crouch = false;
 
-    public Vector3 playerPosition;
+    private Vector3 playerPosition;
     private Rigidbody playerRb;
     
     private float movementSpeed = 15f;
@@ -279,6 +279,14 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(throwTime);
         canThrow = true;
     }
-    
+
+    // Getter and Setter for the Player, so that it can be used inside the anim and the enemy check if Player is in range
+    public Vector3 PlayerPosition { get => this.playerPosition; set => this.playerPosition = value; }
+
+    public Vector3 GetPosition()
+    {
+        return this.playerPosition;
+    }
+
 
 }

@@ -5,14 +5,16 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     private Animator _animator;
-    private CharacterController player;
-    private float distanceToPlayer;
+
+
+    [SerializeField] ParticleSystem OnHitParticles;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<CharacterController>();
+
         _animator = GetComponent<Animator>();
+        //OnHitParticles = GetComponent<HitEnemy_VFX>();
     }
 
     // Update is called once per frame
@@ -27,30 +29,42 @@ public class AnimationController : MonoBehaviour
             Debug.LogError("'_animator' is NULL! Try assigning the Animation to the correct Component");
     }
 
+    public void OnEnemyHittedSequence()
+    {
+        _animator.SetTrigger("OnEnemyHitted");
+        
+    }
+
     private void EnemyDestroySequence()
     {
         _animator.SetTrigger("OnEnemyDeath");
         Destroy(this.gameObject, 2.5f);
     }
 
-    private void CheckDistanceToPlayer()
+    private void AwareOfPlayer()
     {
-        distanceToPlayer = Vector3.Distance(player.transform.position, this.transform.position);
-        Debug.Log(distanceToPlayer);
+        _animator.SetBool("SawPlayer?", true);
+    }
+
+    private void EnemyFiringSequence()
+    {
+        _animator.SetTrigger("OnEnemyFiring");
+
     }
 
 
-    //////////////////////////////////////////////////////////////////////////
-    ///
-    //* Copy and put into the Player Movement, when colliding with Enemy
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Turret"))
-    //    {
-    //        Destroy(other.gameObject);
-    //        EnemyDestroySequence();
-    //    }
-    //}
+        //////////////////////////////////////////////////////////////////////////
+        ///
+        //* Copy and put into the Player Movement, when colliding with Enemy
 
-}
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    if (other.CompareTag("Turret"))
+        //    {
+        //        Destroy(other.gameObject);
+        //        EnemyDestroySequence();
+        //    }
+        //}
+
+    }
