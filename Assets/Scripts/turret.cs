@@ -19,6 +19,7 @@ public class turret : MonoBehaviour
     public bool bisDead;
     public bool bisFiring;
     public bool balertState;
+    public bool bwhoHittedMe;
 
 
     // Start is called before the first frame update
@@ -46,25 +47,10 @@ public class turret : MonoBehaviour
         }
         if (other.gameObject.tag == "NinjaStern")
         {
-            //Destroy(this.gameObject);
             Destroy(other.gameObject);
             bgotHit = true;
         }
     }
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Sword")
-    //    {
-    //        //Destroy(this.gameObject);
-    //        bgotHit = false;
-    //    }
-    //    if (other.gameObject.tag == "NinjaStern")
-    //    {
-    //        //Destroy(this.gameObject);
-    //        bgotHit = false;
-    //    }
-    //}
 
     void SwitchToAlert()
         {
@@ -78,12 +64,7 @@ public class turret : MonoBehaviour
         {
             animator.SetTrigger("OnEnemyHitted");
             bgotHit = false;
-        //animator.SetBool("GotHit", true);
         }
-        //if(!bgotHit)
-        //{
-        //animator.SetBool("GotHit", false);
-        //}
     }
 
         void CheckPlayerDistance()

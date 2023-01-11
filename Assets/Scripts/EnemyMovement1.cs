@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class EnemyMovement1 : MonoBehaviour
 {
@@ -10,14 +11,15 @@ public class EnemyMovement1 : MonoBehaviour
     [SerializeField]
     private Vector3 target;
     bool goal = true;
-
+    private int count = 0;
     private Vector3 start;
-   // public BoxCollider playerBoxCollider;
+    private VisualEffect enemyHit;
+    // public BoxCollider playerBoxCollider;
     void Start()
     {
         start.x = transform.position.x;
-
-       // playerBoxCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider>();
+        enemyHit = this.GetComponent<VisualEffect>();
+        // playerBoxCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider>();
     }
 
     
@@ -56,16 +58,28 @@ public class EnemyMovement1 : MonoBehaviour
     {
         if (other.gameObject.tag == "Sword")
         {
-            Destroy(this.gameObject);
-
-
+            enemyHit.Play();
+            if (count >= 1)
+            {
+                Destroy(this.gameObject);
+                count = 0;
+            }
+            else
+                count++;
 
         }
 
         if (other.gameObject.tag == "NinjaStern")
         {
-            Destroy(this.gameObject);
-            Destroy(other.gameObject);
+            enemyHit.Play();
+            if (count >= 1)
+            {
+                Destroy(this.gameObject);
+                Destroy(other.gameObject);
+                count = 0;
+            }
+            else
+                count++;
 
         }
 
