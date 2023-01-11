@@ -9,17 +9,19 @@ using UnityEngine.VFX;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
-    public int _maxHealth = 3;
-    private int _currentHealth;
+    public int maxHealth = 3;
+    private int currentHealth;
     public DeathMenu deathmenu;
     public CharacterBlink blink;
     public CheckHealth _healthBar;
     public bool canbedamaged = true;
     public GameObject player;
+    private PlayerKnockback knock;
     private VisualEffect playerHit;
     void Start()
     {
-        _currentHealth = _maxHealth;
+        knock = GetComponent<PlayerKnockback>();
+        currentHealth = maxHealth;
         blink = this.GetComponent<CharacterBlink>();
         playerHit = this.GetComponent<VisualEffect>();
     }
@@ -44,20 +46,20 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.CompareTag("CatBullet"))
         {
-            if (_currentHealth > 1 && CanBeDamaged() == true)
+            if (currentHealth > 1 && CanBeDamaged() == true)
             {
                 Destroy(other.gameObject);
                 canbedamaged = false;
-                playerHit.Play();
-                _currentHealth--;
-                _healthBar.ChangeHealth(_currentHealth);
+                //playerHit.Play();
+                currentHealth--;
+                _healthBar.ChangeHealth(currentHealth);
 
             }
-            else if (_currentHealth == 1)
+            else if (currentHealth == 1)
             {
                 Destroy(other.gameObject);
-                _currentHealth--;
-                _healthBar.ChangeHealth(_currentHealth);
+                currentHealth--;
+                _healthBar.ChangeHealth(currentHealth);
                 deathmenu.ToggleEndMenu();
                 player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
@@ -70,21 +72,21 @@ public class PlayerHealth : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (_currentHealth > 1 && CanBeDamaged() == true) 
+            if (currentHealth > 1 && CanBeDamaged() == true) 
             {
-                _currentHealth--;
-                playerHit.Play();
+                currentHealth--;
+                knock.Knockback();
+                //playerHit.Play();
                 canbedamaged = false;
                 blink.tookDamage();
-                _healthBar.ChangeHealth(_currentHealth);
-                Debug.Log("Succ");
+                _healthBar.ChangeHealth(currentHealth);
                 return;
                 
             }
-            else if (_currentHealth == 1)
+            else if (currentHealth == 1)
             {
-                _currentHealth--;
-                _healthBar.ChangeHealth(_currentHealth);
+                currentHealth--;
+                _healthBar.ChangeHealth(currentHealth);
                 deathmenu.ToggleEndMenu();
                 player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
@@ -93,18 +95,18 @@ public class PlayerHealth : MonoBehaviour
         //If Healthpickup then regen health and destroy pickup
         if (collision.gameObject.CompareTag("HealthPickup"))
         {
-            if (_currentHealth < _maxHealth)
+            if (currentHealth < maxHealth)
             {
-                _currentHealth++;
-                _healthBar.ChangeHealth(_currentHealth);
+                currentHealth++;
+                _healthBar.ChangeHealth(currentHealth);
                 Destroy(collision.gameObject);
             }
 
         }
         if (collision.gameObject.CompareTag("Death"))
         {
-            _currentHealth = 0;
-            _healthBar.ChangeHealth(_currentHealth);
+            currentHealth = 0;
+            _healthBar.ChangeHealth(currentHealth);
             deathmenu.ToggleEndMenu();
             player.GetComponent("PlayerMovement").gameObject.SetActive(false);
         }

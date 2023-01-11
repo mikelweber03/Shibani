@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     public bool crouch = false;
 
 
-
     public Vector3 playerPosition;
 
     private Rigidbody playerRb;
@@ -147,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
 
             playerRb.AddForce(movement * Vector3.right);
 
-            Debug.Log(movement * Vector3.right);
+           // Debug.Log(movement * Vector3.right);
         }
             
 
