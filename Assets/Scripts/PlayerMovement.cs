@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float verticalInput;
 
-    private float gravityModifier = 5f;
+    private float gravityModifier = 5;
 
 
 
@@ -116,7 +116,6 @@ public class PlayerMovement : MonoBehaviour
     private float climping = 5f;
 
 
-
     void Start()
 
     {
@@ -125,7 +124,11 @@ public class PlayerMovement : MonoBehaviour
 
         playerRb = GetComponent<Rigidbody>();
 
+        Physics.gravity = new Vector3(0f, -9.8f, 0f);
+
         Physics.gravity *= gravityModifier;
+
+        Debug.Log(Physics.gravity);
 
         starBar = FindObjectOfType<NinjaStarUI>();
 
@@ -135,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isOnWall && grounded && !dashBlock)
+        if (!isOnWall  && !dashBlock)  // grounded)
         {
             float targetSpeed = horizontalInput * movementSpeed;
 
@@ -195,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
 
             playerRb.useGravity = false;
 
-            grounded = false;
+            //grounded = false;
 
             dashJump = false;
 
@@ -205,16 +208,11 @@ public class PlayerMovement : MonoBehaviour
 
             {
 
+                //transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
+                playerRb.AddRelativeForce(-15, 25, 0, ForceMode.Impulse);
                 isOnWall = false;
-
                 playerRb.useGravity = true;
 
-                playerRb.AddRelativeForce(-10, 20, 0, ForceMode.Impulse);
-
-                transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
-
-
-                Debug.Log("passiert hier was ?");
             }
 
 
@@ -229,11 +227,12 @@ public class PlayerMovement : MonoBehaviour
 
                 playerRb.useGravity = true;
 
+
                 playerRb.AddRelativeForce(-1, 3, 0, ForceMode.Impulse);
 
                 isOnWall = false;
 
-                grounded = true;
+                //grounded = true;
 
 
 
@@ -245,9 +244,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Player Movement HorizontalInput 
 
-        if (!isOnWall && grounded && !dashBlock) //&& (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
+        //if (!isOnWall  && !dashBlock) //&& grounded) //&& (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
 
-        {
+        //{
             //Vector3 movementDirection;
             //movementDirection = new Vector3(1 * movementSpeed * Time.deltaTime, 0, 0);
             //playerRb.AddRelativeForce(Vector3.right * movementSpeed * Time.deltaTime, ForceMode.Force);
@@ -265,7 +264,7 @@ public class PlayerMovement : MonoBehaviour
 
             //Debug.Log((float)ForceMode.Force); 
 
-        }
+        //}
 
 
 
@@ -281,7 +280,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (horizontalInput < 0 && !isOnWall && grounded)
+        if (horizontalInput < 0 && !isOnWall) // && grounded)
 
         {
 
@@ -291,7 +290,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (horizontalInput > 0 && !isOnWall && grounded)
+        if (horizontalInput > 0 && !isOnWall) // && grounded)
 
         {
 
@@ -317,7 +316,7 @@ public class PlayerMovement : MonoBehaviour
 
             dashBlock = false;
 
-            grounded = true;
+            //grounded = true;
 
             isOnGround = false;
 
@@ -348,8 +347,6 @@ public class PlayerMovement : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             isOnGround = false;
-
-
 
         }
 
@@ -439,7 +436,7 @@ public class PlayerMovement : MonoBehaviour
 
             dashJump = false;
 
-            grounded = true;
+            //grounded = true;
 
 
 
@@ -543,7 +540,7 @@ public class PlayerMovement : MonoBehaviour
 
         dashBlock = false;
 
-        grounded = true;
+        //grounded = true;
 
         playerRb.useGravity = true;
 
