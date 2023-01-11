@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class turret : MonoBehaviour
 {
-    //public GameObject bulletLeft;
+    public GameObject bulletLeft;
 
     private CharacterController player;
     AnimationController anim;
@@ -21,6 +22,13 @@ public class turret : MonoBehaviour
     public bool balertState;
     public bool bwhoHittedMe;
 
+    public int maxHealth;
+
+    private int count = 0;
+    private Vector3 start;
+    private VisualEffect enemyHit;
+    private AnimationEvent TurretHitEvent;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +37,7 @@ public class turret : MonoBehaviour
         anim = turret.FindObjectOfType<AnimationController>();
         animator = gameObject.GetComponent<Animator>();
         Awareness = gameObject.GetComponentInChildren<SphereCollider>();
+        enemyHit = GetComponentInChildren<VisualEffect>();
     }
 
     // Update is called once per frame
@@ -36,6 +45,7 @@ public class turret : MonoBehaviour
     {
         CheckPlayerDistance();
         GotHit();
+        InvokeRepeating("TurretFire", 1, 3);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,53 +54,78 @@ public class turret : MonoBehaviour
         {
             //Destroy(this.gameObject);
             bgotHit = true;
+            TakeDamage();
         }
         if (other.gameObject.tag == "NinjaStern")
         {
             Destroy(other.gameObject);
             bgotHit = true;
+            TakeDamage();
         }
     }
 
     void SwitchToAlert()
-        {
-            // CheckPlayerDistance
-            binRange = true;
-        }
+    {
+        // CheckPlayerDistance
+        binRange = true;
+    }
 
-        void GotHit()
-        {
-        if(bgotHit)
+    void GotHit()
+    {
+        if (bgotHit)
         {
             animator.SetTrigger("OnEnemyHitted");
             bgotHit = false;
         }
     }
 
-        void CheckPlayerDistance()
+    void CheckPlayerDistance()
+    {
+        if (binRange)
         {
-            if (binRange)
-            {
             animator.SetBool("SawPlayer?", true);
-            }
-            if (!binRange)
-            {
-            animator.SetBool("SawPlayer?", false);
-            }
         }
-
-        void TurretDeath()
+        if (!binRange)
         {
-            bisDead = true;
+            animator.SetBool("SawPlayer?", false);
         }
+    }
+
+    void TurretDeath()
+    {
+        if (bisDead)
+        {
+            animator.SetTrigger("OnEnemyDeath");
+            Destroy(this.gameObject, 15f);
+        }
+    }
+
+    void TakeDamage()
+    {
+        if (count >= maxHealth)
+        {
+            Destroy(this.gameObject);
+            count = 0;
+            bisDead = true;
+            TurretDeath();
+        }
+        else
+            count++;
+    }
+
+    void playVFX()
+    {
+        enemyHit.Play();
+    }
 
 
-    //void TurretFire()
-    //{
-    //    bisFiring = true;
-    //    Instantiate(bulletLeft, transform.position, transform.rotation);
-    //    bisFiring = false;
-    //}
+
+    void TurretFire()
+    {
+        bisFiring = true;
+        Instantiate(bulletLeft, transform.position, transform.rotation);
+        bisFiring = false;
+    }
 
 
 }

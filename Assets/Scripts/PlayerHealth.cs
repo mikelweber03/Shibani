@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
     {
         _currentHealth = _maxHealth;
         blink = this.GetComponent<CharacterBlink>();
-        playerHit = this.GetComponent<VisualEffect>();
+        //playerHit = this.GetComponent<VisualEffect>();
     }
 
     public bool CanBeDamaged()
@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 Destroy(other.gameObject);
                 canbedamaged = false;
-                playerHit.Play();
+                //playerHit.Play();
                 _currentHealth--;
                 _healthBar.ChangeHealth(_currentHealth);
 
@@ -73,7 +73,7 @@ public class PlayerHealth : MonoBehaviour
             if (_currentHealth > 1 && CanBeDamaged() == true) 
             {
                 _currentHealth--;
-                playerHit.Play();
+                //playerHit.Play();
                 canbedamaged = false;
                 blink.tookDamage();
                 _healthBar.ChangeHealth(_currentHealth);
