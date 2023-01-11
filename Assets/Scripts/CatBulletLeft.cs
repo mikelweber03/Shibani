@@ -13,6 +13,11 @@ public class CatBulletLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Shoot();   
+    }
+
+    void Shoot()
+    {
         transform.Translate(Vector3.left * 10 * Time.deltaTime);
     }
 }
