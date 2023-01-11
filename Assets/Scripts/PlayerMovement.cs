@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 inputVector;
 
 
-
+    [SerializeField]
     private float movementSpeed = 15f;
 
     private float jumpForce = 26f;
@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
 
         Physics.gravity *= gravityModifier;
 
-
+        starBar = FindObjectOfType<NinjaStarUI>();
 
     }
 
@@ -223,7 +223,11 @@ public class PlayerMovement : MonoBehaviour
         if (!isOnWall && grounded && !dashBlock)
 
         {
-
+            Vector3  movementDirection;
+            movementDirection = new Vector3(1 * movementSpeed * Time.deltaTime, 0, 0);
+            //playerRb.AddForce(movementDirection, ForceMode.Acceleration);
+            Debug.Log(Vector3.right);
+            //transform.Translate(movementDirection, Space.World); 
             transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World); 
 
             //inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World); 
@@ -372,7 +376,7 @@ public class PlayerMovement : MonoBehaviour
 
     {
 
-        if (other.gameObject.CompareTag("StarPickUp"))
+        if (other.gameObject.CompareTag("StarPickUp") && other  != null)
 
         {
 
