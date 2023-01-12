@@ -292,8 +292,8 @@ MonoBehaviour:
   - {fileID: 3262526678243236454}
   - {fileID: 3223842346408554579}
   m_Bounds:
-    m_Center: {x: -0.000061035156, y: 0.0020397902, z: 0}
-    m_Extent: {x: 2.415061, y: 0.94796, z: 0}
+    m_Center: {x: -0.000031232834, y: 0.002044201, z: 0.000001013279}
+    m_Extent: {x: 2.4150312, y: 0.9479575, z: 1.1368684e-13}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -429,7 +429,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 7706212975863815672}
   m_Bounds:
-    m_Center: {x: -0.0009250641, y: 0.000015377998, z: 0}
+    m_Center: {x: -0.00097084045, y: 0.0000060796738, z: 0.000001013279}
     m_Extent: {x: 1.4023749, y: 1.5750003, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -738,8 +738,8 @@ MonoBehaviour:
   - {fileID: 3223842346408554579}
   - {fileID: 8214634713566664029}
   m_Bounds:
-    m_Center: {x: 0.0003809929, y: 0.000015258789, z: 0}
-    m_Extent: {x: 3.4746199, y: 2.3900006, z: 0}
+    m_Center: {x: 0.00038266182, y: 0.000008106232, z: 0.000001013279}
+    m_Extent: {x: 3.4746063, y: 2.390005, z: 1.1368684e-13}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -845,8 +845,8 @@ MonoBehaviour:
   - {fileID: 5627950975778244203}
   - {fileID: 8714638977875540042}
   m_Bounds:
-    m_Center: {x: -0.00078320503, y: 0.0013489723, z: 0}
-    m_Extent: {x: 3.4740946, y: 2.4786508, z: 0}
+    m_Center: {x: -0.00087475777, y: 0.0013568401, z: 0.000001013279}
+    m_Extent: {x: 3.4740944, y: 2.4786553, z: 5.684342e-14}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -951,7 +951,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8214634713566664029}
   m_Bounds:
-    m_Center: {x: -0.0018622875, y: -0.0018650293, z: 0}
+    m_Center: {x: -0.0018928051, y: -0.0018817186, z: 0.000001013279}
     m_Extent: {x: 1.3982602, y: 1.5771251, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1040,8 +1040,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dad58070420e246a8de13a33cd3a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  target: {x: 0, y: 0, z: 0}
+  offsetRight: 3
+  offsetLeft: -3
+  speed: 2
+  offsetUp: 0
+  offsetDown: 0
+  hasReachedRight: 0
+  hasReachedLeft: 0
+  hasReachedUp: 0
+  hasReachedDown: 0
+  movesHorizontal: 1
 --- !u!136 &877060425222883310
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1159,8 +1167,8 @@ MonoBehaviour:
   - {fileID: 6448108381179958954}
   - {fileID: 5404599797689516094}
   m_Bounds:
-    m_Center: {x: -0.0016801357, y: 0.0022949576, z: 0}
-    m_Extent: {x: 2.40832, y: 0.9577049, z: 0}
+    m_Center: {x: -0.0017106533, y: 0.0022912621, z: 0.000001013279}
+    m_Extent: {x: 2.40832, y: 0.9577049, z: 5.684342e-14}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

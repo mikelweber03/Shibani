@@ -6,54 +6,66 @@ using UnityEngine.VFX;
 
 public class EnemyMovement1 : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private Vector3 target;
-    bool goal = true;
+    [SerializeField] private float offsetRight = 0, offsetLeft = 0, speed = 1, offsetUp = 0, offsetDown = 0;
+    [SerializeField] private bool hasReachedRight = false, hasReachedLeft = false, hasReachedUp = false, hasReachedDown = false, movesHorizontal = false;
     private int count = 0;
     private Vector3 start;
     private VisualEffect enemyHit;
     // public BoxCollider playerBoxCollider;
-    void Start()
+    void Awake()
     {
         start.x = transform.position.x;
         enemyHit = this.GetComponent<VisualEffect>();
-        // playerBoxCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider>();
+        
     }
 
     
     void Update()
-    {   //If the enemy is at the target vector, set goal to false
-        if (transform.position.x < target.x)
-        {
-            goal = false;
-        }
-        //If the nemy isn't at target vector, make him go left towards it
-        if (goal == true)
-        {
-            
-            
-                transform.Translate(Vector3.left * Time.deltaTime * speed);
-            
-                
-            
-        }
-        else 
-        {
-            if (transform.position.x <= start.x)
-            {
-                transform.Translate(Vector3.right * Time.deltaTime * speed);
-            }
-            else
-                goal = true;
-            
-        }
-
-        
-
+    {
+        MoveHorizontal();
 
     }
+
+    void MoveHorizontal()
+    {
+        if (!hasReachedRight)
+        {
+            if (transform.position.x < start.x + offsetRight)
+            {
+                MovementHorizontal(offsetRight);
+            }
+            else if (transform.position.x >= start.x + offsetRight)
+            {
+                hasReachedRight = true;
+                hasReachedLeft = false;
+            }
+        }
+        else if (!hasReachedLeft)
+        {
+            if (transform.position.x > start.x + offsetLeft)
+            {
+                MovementHorizontal(offsetLeft);
+            }
+            else if (transform.position.x <= start.x + offsetLeft)
+            {
+                hasReachedRight = false;
+                hasReachedLeft = true;
+            }
+        }
+    }
+    void MovementHorizontal(float offset)
+    {
+        if (!hasReachedRight)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(start.x + offset, transform.position.y, transform.position.z), speed * Time.deltaTime);
+        }
+
+        if (!hasReachedLeft)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(start.x + offset, transform.position.y, transform.position.z), speed * Time.deltaTime);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Sword")
