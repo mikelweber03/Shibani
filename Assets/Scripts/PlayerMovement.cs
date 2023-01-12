@@ -21,15 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 inputVector;
 
 
-    [SerializeField]
-    [Header("Horizontal Movement")]
-    private float movementSpeed = 20f;
 
-    public float acceleration;
-
-    public float decceleration;
-
-    public float velPower;
+    private float movementSpeed = 15f;
 
     private float jumpForce = 26f;
 
@@ -37,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float verticalInput;
 
-    private float gravityModifier = 5;
+    private float gravityModifier = 5f;
 
 
 
@@ -109,11 +102,21 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isOnWall = false;
 
+
+
     //private float wallJump; 
 
     public bool grounded = true;
 
+
     private float climping = 5f;
+
+    [Header("Animation")]
+
+    Animator anim;
+
+    private float playerVelocity;
+
 
 
     void Start()
@@ -124,36 +127,18 @@ public class PlayerMovement : MonoBehaviour
 
         playerRb = GetComponent<Rigidbody>();
 
-        Physics.gravity = new Vector3(0f, -9.8f, 0f);
-
         Physics.gravity *= gravityModifier;
 
-        Debug.Log(Physics.gravity);
+        //Connect Animator to Script
+        anim = GetComponentInChildren<Animator>();
 
-        starBar = FindObjectOfType<NinjaStarUI>();
+
 
     }
 
 
 
-    private void FixedUpdate()
-    {
-        if (!isOnWall && !dashBlock)  // grounded)
-        {
-            float targetSpeed = horizontalInput * movementSpeed;
 
-            float speedDif = targetSpeed - playerRb.velocity.x;
-
-            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
-
-            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
-
-            playerRb.AddForce(movement * Vector3.right);
-
-        }
-
-
-    }
 
     void Update()
 
@@ -165,6 +150,13 @@ public class PlayerMovement : MonoBehaviour
 
         verticalInput = Input.GetAxis("Vertical");
 
+        // Anim stats for Walking
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            anim.SetFloat("MovementSpeed", 1);
+        }
+        else anim.SetFloat("MovementSpeed", 0);
+
 
 
         // let the Player shoot a Ninja Star 
@@ -172,8 +164,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar && !crouch)
 
         {
-
             NinjaStarAbility();
+
+
 
         }
 
@@ -195,9 +188,10 @@ public class PlayerMovement : MonoBehaviour
 
             playerRb.useGravity = false;
 
-            //grounded = false;
+            grounded = false;
 
             dashJump = false;
+            anim.SetBool("CanDashJump", false);
 
             transform.Translate(Vector3.up * verticalInput * Time.deltaTime * climping);
 
@@ -205,10 +199,17 @@ public class PlayerMovement : MonoBehaviour
 
             {
 
-                //transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
-                playerRb.AddRelativeForce(-15, 25, 0, ForceMode.Impulse);
                 isOnWall = false;
+                anim.SetBool("IsGrounded_Wall", false);
+                anim.SetTrigger("OnWallJump");
+
                 playerRb.useGravity = true;
+
+                playerRb.AddRelativeForce(-10, 20, 0, ForceMode.Impulse);
+
+                transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
+
+
 
             }
 
@@ -224,12 +225,12 @@ public class PlayerMovement : MonoBehaviour
 
                 playerRb.useGravity = true;
 
-
                 playerRb.AddRelativeForce(-1, 3, 0, ForceMode.Impulse);
 
                 isOnWall = false;
+                anim.SetBool("IsGrounded_Wall", false);
 
-                //grounded = true;
+                grounded = true;
 
 
 
@@ -238,6 +239,34 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
+
+        // Player Movement HorizontalInput 
+
+        if (!isOnWall && grounded && !dashBlock)
+
+        {
+
+            //Animation Trigger
+            //anim.SetBool("On")
+
+            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
+
+            //inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World); 
+
+            //playerRb.velocity = inputVector;
+
+            //playerRb.AddForce(0f, 1f * horizontalInput * Time.deltaTime * movementSpeed, ((float)Space.World), ((float)ForceMode.Force));
+
+            //Debug.Log((float)Space.World); 
+
+            //Debug.Log((float)ForceMode.Force); 
+
+        }
+
+
+
+
+
         playerPosition = transform.position;
 
 
@@ -248,7 +277,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (horizontalInput < 0 && !isOnWall) // && grounded)
+        if (horizontalInput < 0 && !isOnWall && grounded)
 
         {
 
@@ -258,7 +287,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (horizontalInput > 0 && !isOnWall) // && grounded)
+        if (horizontalInput > 0 && !isOnWall && grounded)
 
         {
 
@@ -284,9 +313,10 @@ public class PlayerMovement : MonoBehaviour
 
             dashBlock = false;
 
-            //grounded = true;
+            grounded = true;
 
             isOnGround = false;
+            anim.SetBool("IsGrounded_Ground", false);
 
             playerRb.velocity = Vector3.zero;
 
@@ -295,6 +325,7 @@ public class PlayerMovement : MonoBehaviour
             playerRb.AddForce(Vector3.up * dashJumpForce, ForceMode.Impulse);
 
             dashJump = false;
+            anim.SetBool("CanDashJump", false);
 
 
 
@@ -308,6 +339,9 @@ public class PlayerMovement : MonoBehaviour
 
         {
 
+            //AnimationTrigger
+            anim.SetTrigger("OnBaseJump");
+
             playerRb.velocity = Vector3.zero;
 
             playerRb.angularVelocity = Vector3.zero;
@@ -315,6 +349,8 @@ public class PlayerMovement : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             isOnGround = false;
+            anim.SetBool("IsGrounded_Ground", false);
+
 
 
         }
@@ -345,6 +381,20 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+
+
+        //if (Input.GetKeyDown(KeyCode.M)) 
+
+        //{ 
+
+        //    SceneManager.LoadScene("LucianosWorkSpace"); 
+
+        //} 
+
+
+
+
+
     }
 
 
@@ -353,7 +403,7 @@ public class PlayerMovement : MonoBehaviour
 
     {
 
-        if (other.gameObject.CompareTag("StarPickUp") && other != null && starAmont < 3 )
+        if (other.gameObject.CompareTag("StarPickUp"))
 
         {
 
@@ -369,45 +419,32 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (other.gameObject.CompareTag("Latern"))
-        {
-            this.transform.parent = other.transform;
-
-            isOnGround = true;
-
-            dashJump = false;
-        }
-
     }
-    private void OnTriggerExit(Collider collider)
-    {
-       
-       if (collider.gameObject.CompareTag("Latern"))
-           {
-                transform.SetParent(null);
-                Debug.Log("geht das ?");
-           }
-        
-    }
+
 
 
     private void OnCollisionEnter(Collision collision)
 
     {
 
+
+
+
+
         // Check if the player is on hart surves and gives him the ability to jump again 
-
-
 
         if (collision.gameObject.CompareTag("Ground"))
 
         {
 
             isOnGround = true;
+            anim.SetBool("IsGrounded_Ground", true);
 
             dashJump = false;
+            anim.SetBool("CanDashJump", false);
 
-            //grounded = true;
+            grounded = true;
+
 
 
 
@@ -418,8 +455,10 @@ public class PlayerMovement : MonoBehaviour
         {
 
             isOnWall = true;
+            anim.SetBool("IsGrounded_Wall", true);
 
             dashJump = false;
+            anim.SetBool("CanDashJump", false);
 
 
 
@@ -429,21 +468,18 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-
     // check ob spieler an der wand ist 
 
     private void OnCollisionExit(Collision collision)
 
     {
 
-        
-
-
         if (collision.gameObject.CompareTag("Wall"))
 
         {
 
             isOnWall = false;
+            anim.SetBool("IsGrounded_Wall", false);
 
             playerRb.useGravity = true;
 
@@ -464,7 +500,8 @@ public class PlayerMovement : MonoBehaviour
         if (canDash)
 
         {
-
+            //Animation Trigger for SwordAttack
+            anim.SetTrigger("OnDash");
             StartCoroutine(Dash());
 
         }
@@ -480,6 +517,7 @@ public class PlayerMovement : MonoBehaviour
         dashBlock = true;
 
         canDash = false;
+        anim.SetBool("CanDash", false);
 
         nagatoSprite.enabled = false;
 
@@ -510,18 +548,20 @@ public class PlayerMovement : MonoBehaviour
         nagatoSprite.enabled = true;
 
         dashJump = true;
+        anim.SetBool("CanDashJump", true);
 
         yield return new WaitForSeconds(0.1f);
 
         dashBlock = false;
 
-        //grounded = true;
+        grounded = true;
 
         playerRb.useGravity = true;
 
         yield return new WaitForSeconds(timeBtweDashes);
 
         canDash = true;
+        anim.SetBool("CanDash", true);
 
     }
 
@@ -534,7 +574,8 @@ public class PlayerMovement : MonoBehaviour
         if (canAtack)
 
         {
-
+            //Animation Trigger for SwordAttack
+            anim.SetTrigger("OnCombat_Sword");
             StartCoroutine(SwordAttack());
 
 
@@ -552,6 +593,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         canAtack = false;
+        anim.SetBool("CanAttack", false);
 
         swortMeshRenderer.enabled = true;
 
@@ -566,6 +608,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(atackCoolDown);
 
         canAtack = true;
+        anim.SetBool("CanAttack", true);
 
     }
 
@@ -580,7 +623,8 @@ public class PlayerMovement : MonoBehaviour
         if (canThrow && gotStar)
 
         {
-
+            //Animation Trigger for SwordAttack
+            anim.SetTrigger("OnCombat_Shuriken");
             StartCoroutine(NinjaStardAttack());
 
 
@@ -630,9 +674,9 @@ public class PlayerMovement : MonoBehaviour
         canThrow = true;
 
     }
-
-
-
-
-
 }
+
+
+
+
+
