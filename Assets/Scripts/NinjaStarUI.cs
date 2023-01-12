@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class NinjaStarUI : MonoBehaviour
 
 {
+    //Image _star0;
 
     Image _star1;
 
@@ -17,7 +18,9 @@ public class NinjaStarUI : MonoBehaviour
 
     {
 
-        //_heart = GetComponent<Image>(); 
+        //_heart = GetComponent<Image>();ï¿½
+
+      //  _star0 = GameObject.Find("Star0").GetComponent<Image>();
 
         _star1 = GameObject.Find("Star1").GetComponent<Image>();
 
@@ -35,11 +38,12 @@ public class NinjaStarUI : MonoBehaviour
 
     {
 
-        //Checks at what star amont the player should be and displays it 
+        //Checks at what star amont the player should be and displays itï¿½
 
         if (starAmont == 1)
 
         {
+        //    _star0.enabled = false;
 
             _star1.enabled = true;
 
@@ -59,6 +63,8 @@ public class NinjaStarUI : MonoBehaviour
 
         {
 
+          //  _star0.enabled = false;
+
             _star1.enabled = false;
 
             _star2.enabled = true;
@@ -75,6 +81,8 @@ public class NinjaStarUI : MonoBehaviour
 
         {
 
+            //_star0.enabled = false;
+
             _star1.enabled = false;
 
             _star2.enabled = false;
@@ -90,6 +98,8 @@ public class NinjaStarUI : MonoBehaviour
         if (starAmont == 0)
 
         {
+
+           // _star0.enabled = true;
 
             _star1.enabled = false;
 

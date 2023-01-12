@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public bool crouch = false;
 
 
+
     public Vector3 playerPosition;
 
     private Rigidbody playerRb;
@@ -137,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isOnWall  && !dashBlock)  // grounded)
+        if (!isOnWall && !dashBlock)  // grounded)
         {
             float targetSpeed = horizontalInput * movementSpeed;
 
@@ -149,9 +150,8 @@ public class PlayerMovement : MonoBehaviour
 
             playerRb.AddForce(movement * Vector3.right);
 
-           // Debug.Log(movement * Vector3.right);
         }
-            
+
 
     }
 
@@ -174,8 +174,6 @@ public class PlayerMovement : MonoBehaviour
         {
 
             NinjaStarAbility();
-
-
 
         }
 
@@ -240,35 +238,6 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
-
-        // Player Movement HorizontalInput 
-
-        //if (!isOnWall  && !dashBlock) //&& grounded) //&& (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
-
-        //{
-            //Vector3 movementDirection;
-            //movementDirection = new Vector3(1 * movementSpeed * Time.deltaTime, 0, 0);
-            //playerRb.AddRelativeForce(Vector3.right * movementSpeed * Time.deltaTime, ForceMode.Force);
-            //Debug.Log(Vector3.right * movementSpeed * movementSpeed * Time.deltaTime);
-            //transform.Translate(movementDirection, Space.World); 
-            //transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World); 
-
-            //inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World); 
-
-            //playerRb.velocity = inputVector;
-
-            //playerRb.AddForce(0f, 1f * horizontalInput * Time.deltaTime * movementSpeed, ((float)Space.World), ((float)ForceMode.Force));
-
-            //Debug.Log((float)Space.World); 
-
-            //Debug.Log((float)ForceMode.Force); 
-
-        //}
-
-
-
-
-
         playerPosition = transform.position;
 
 
@@ -347,6 +316,7 @@ public class PlayerMovement : MonoBehaviour
 
             isOnGround = false;
 
+
         }
 
 
@@ -375,20 +345,6 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-
-
-        //if (Input.GetKeyDown(KeyCode.M)) 
-
-        //{ 
-
-        //    SceneManager.LoadScene("LucianosWorkSpace"); 
-
-        //} 
-
-
-
-
-
     }
 
 
@@ -397,7 +353,7 @@ public class PlayerMovement : MonoBehaviour
 
     {
 
-        if (other.gameObject.CompareTag("StarPickUp") && other != null)
+        if (other.gameObject.CompareTag("StarPickUp") && other != null && starAmont < 3 )
 
         {
 
@@ -413,19 +369,35 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-    }
+        if (other.gameObject.CompareTag("Latern"))
+        {
+            this.transform.parent = other.transform;
 
+            isOnGround = true;
+
+            dashJump = false;
+        }
+
+    }
+    private void OnTriggerExit(Collider collider)
+    {
+       
+       if (collider.gameObject.CompareTag("Latern"))
+           {
+                transform.SetParent(null);
+                Debug.Log("geht das ?");
+           }
+        
+    }
 
 
     private void OnCollisionEnter(Collision collision)
 
     {
 
-
-
-
-
         // Check if the player is on hart surves and gives him the ability to jump again 
+
+
 
         if (collision.gameObject.CompareTag("Ground"))
 
@@ -457,11 +429,15 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+
     // check ob spieler an der wand ist 
 
     private void OnCollisionExit(Collision collision)
 
     {
+
+        
+
 
         if (collision.gameObject.CompareTag("Wall"))
 
