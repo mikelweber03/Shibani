@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5756413736269651911}
   - component: {fileID: 8095768116413606793}
   - component: {fileID: 8095768116413606785}
+  - component: {fileID: 8095768116413606797}
   m_Layer: 0
   m_Name: Undestructable_crate
   m_TagString: LootBox
@@ -102,7 +103,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!65 &8095768116413606785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -116,6 +117,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1459424, y: 1.9599402, z: 2.1411858}
   m_Center: {x: 0, y: -0.020592451, z: 0}
+--- !u!114 &8095768116413606797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6116486133756444178}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6789b33b2eff74db00fb133b0778cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Boxhit: {fileID: 0}
+  crate_Des: {fileID: 7399602019115740762, guid: 06f99b78e2c577b409529593aa7d7248, type: 3}
+  boxMaterial: {fileID: 2100000, guid: ad3051bba7b5dbb4eb58c0aedf4101df, type: 2}
 --- !u!1 &8095768114828281682
 GameObject:
   m_ObjectHideFlags: 0
