@@ -17,7 +17,7 @@ public class NinjaStarUI : MonoBehaviour
 
     {
 
-        //_heart = GetComponent<Image>(); 
+        //_heart = GetComponent<Image>();ï¿½
 
         _star1 = GameObject.Find("Star1").GetComponent<Image>();
 
@@ -35,7 +35,7 @@ public class NinjaStarUI : MonoBehaviour
 
     {
 
-        //Checks at what star amont the player should be and displays it 
+        //Checks at what star amont the player should be and displays itï¿½
 
         if (starAmont == 1)
 
