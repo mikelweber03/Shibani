@@ -379,16 +379,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-    private void OnTriggerExit(Collider Parent)
+    private void OnTriggerExit(Collider collider)
     {
-        if (this.gameObject.name.Equals("Latern"))
-        {
-            if (Parent.gameObject.CompareTag("Latern"))
-            {
+       
+       if (collider.gameObject.CompareTag("Latern"))
+           {
                 transform.SetParent(null);
                 Debug.Log("geht das ?");
-            }
-        }
+           }
+        
     }
 
 
