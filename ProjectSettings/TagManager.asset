@@ -18,6 +18,7 @@ TagManager:
   - Death
   - CatBullet
   - StarPickUp
+  - NagatoSprite
   layers:
   - Default
   - TransparentFX
