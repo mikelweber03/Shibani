@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4038600681188587391}
   - component: {fileID: 1127068109122468058}
   - component: {fileID: 2900548166866340880}
+  - component: {fileID: 962824663847590714}
   m_Layer: 0
   m_Name: Building_07
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &962824663847590714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693001449850351045}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 34.736702, y: 2.7678719, z: 11.613521}
+  m_Center: {x: 1.2934837, y: 6.7670727, z: -0.0045747757}
