@@ -27,17 +27,19 @@ public class turret : MonoBehaviour
     private int count = 0;
     private Vector3 start;
     private VisualEffect enemyHit;
+    private VisualEffect enemyDeath;
     private AnimationEvent TurretHitEvent;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        //InvokeRepeating("TurredFire", 1, 3);
+        InvokeRepeating("CatBulletLeft", 1, 3);
         anim = turret.FindObjectOfType<AnimationController>();
         animator = gameObject.GetComponent<Animator>();
         Awareness = gameObject.GetComponentInChildren<SphereCollider>();
         enemyHit = GetComponentInChildren<VisualEffect>();
+        enemyDeath = GetComponentInChildren<VisualEffect>();
     }
 
     // Update is called once per frame
@@ -45,8 +47,12 @@ public class turret : MonoBehaviour
     {
         CheckPlayerDistance();
         GotHit();
-        InvokeRepeating("TurretFire", 1, 3);
-    }
+        ShootBullet();
+        if (bisFiring)
+        {
+            TurretFire();
+        }
+     }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -97,6 +103,7 @@ public class turret : MonoBehaviour
         {
             animator.SetTrigger("OnEnemyDeath");
             Destroy(this.gameObject, 15f);
+            VisualEffect.Instantiate(enemyDeath);
         }
     }
 
@@ -118,13 +125,20 @@ public class turret : MonoBehaviour
         enemyHit.Play();
     }
 
-
-
     void TurretFire()
     {
-        bisFiring = true;
-        Instantiate(bulletLeft, transform.position, transform.rotation);
-        bisFiring = false;
+        animator.SetTrigger("OnEnemyFiring");
+        Instantiate(bulletLeft);
+    }
+
+    void ShootBullet()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            bisFiring = true;
+            TurretFire();
+            bisFiring = false;
+        }
     }
 
 

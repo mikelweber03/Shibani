@@ -12,7 +12,6 @@ public class AnimationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         _animator = GetComponent<Animator>();
         //OnHitParticles = GetComponent<HitEnemy_VFX>();
     }
@@ -20,7 +19,7 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void NullCheck()
@@ -32,7 +31,6 @@ public class AnimationController : MonoBehaviour
     public void OnEnemyHittedSequence()
     {
         _animator.SetTrigger("OnEnemyHitted");
-        
     }
 
     private void EnemyDestroySequence()
@@ -49,22 +47,21 @@ public class AnimationController : MonoBehaviour
     private void EnemyFiringSequence()
     {
         _animator.SetTrigger("OnEnemyFiring");
-
     }
 
 
 
-        //////////////////////////////////////////////////////////////////////////
-        ///
-        //* Copy and put into the Player Movement, when colliding with Enemy
+    //////////////////////////////////////////////////////////////////////////
+    ///
+    //* Copy and put into the Player Movement, when colliding with Enemy
 
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if (other.CompareTag("Turret"))
-        //    {
-        //        Destroy(other.gameObject);
-        //        EnemyDestroySequence();
-        //    }
-        //}
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Turret"))
+    //    {
+    //        Destroy(other.gameObject);
+    //        EnemyDestroySequence();
+    //    }
+    //}
 
-    }
+}
