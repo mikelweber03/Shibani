@@ -353,7 +353,7 @@ public class PlayerMovement : MonoBehaviour
 
     {
 
-        if (other.gameObject.CompareTag("StarPickUp") && other != null)
+        if (other.gameObject.CompareTag("StarPickUp") && other != null && starAmont < 3 )
 
         {
 
