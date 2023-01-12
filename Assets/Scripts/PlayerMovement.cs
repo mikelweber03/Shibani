@@ -21,8 +21,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 inputVector;
 
 
+    [SerializeField]
+    [Header("Horizontal Movement")]
+    private float movementSpeed = 20f;
 
-    private float movementSpeed = 15f;
+    public float acceleration;
+
+    public float decceleration;
+
+    public float velPower;
 
     private float jumpForce = 26f;
 
@@ -30,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float verticalInput;
 
-    private float gravityModifier = 5f;
+    private float gravityModifier = 5;
 
 
 
@@ -108,10 +115,6 @@ public class PlayerMovement : MonoBehaviour
 
     private float climping = 5f;
 
-    [Header("Animation")]
-
-    Animator anim;
-
 
     void Start()
 
@@ -121,18 +124,36 @@ public class PlayerMovement : MonoBehaviour
 
         playerRb = GetComponent<Rigidbody>();
 
+        Physics.gravity = new Vector3(0f, -9.8f, 0f);
+
         Physics.gravity *= gravityModifier;
 
-        //Connect Animator to Script
-        anim = GetComponent<Animator>();
+        Debug.Log(Physics.gravity);
 
-
+        starBar = FindObjectOfType<NinjaStarUI>();
 
     }
 
 
 
+    private void FixedUpdate()
+    {
+        if (!isOnWall && !dashBlock)  // grounded)
+        {
+            float targetSpeed = horizontalInput * movementSpeed;
 
+            float speedDif = targetSpeed - playerRb.velocity.x;
+
+            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+
+            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+
+            playerRb.AddForce(movement * Vector3.right);
+
+        }
+
+
+    }
 
     void Update()
 
@@ -154,8 +175,6 @@ public class PlayerMovement : MonoBehaviour
 
             NinjaStarAbility();
 
-
-
         }
 
 
@@ -176,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
 
             playerRb.useGravity = false;
 
-            grounded = false;
+            //grounded = false;
 
             dashJump = false;
 
@@ -186,15 +205,10 @@ public class PlayerMovement : MonoBehaviour
 
             {
 
+                //transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
+                playerRb.AddRelativeForce(-15, 25, 0, ForceMode.Impulse);
                 isOnWall = false;
-
                 playerRb.useGravity = true;
-
-                playerRb.AddRelativeForce(-10, 20, 0, ForceMode.Impulse);
-
-                transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
-
-
 
             }
 
@@ -210,11 +224,12 @@ public class PlayerMovement : MonoBehaviour
 
                 playerRb.useGravity = true;
 
+
                 playerRb.AddRelativeForce(-1, 3, 0, ForceMode.Impulse);
 
                 isOnWall = false;
 
-                grounded = true;
+                //grounded = true;
 
 
 
@@ -223,34 +238,6 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
-
-        // Player Movement HorizontalInput 
-
-        if (!isOnWall && grounded && !dashBlock)
-
-        {
-
-            //Animation Trigger
-            //anim.SetBool("On")
-
-            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World); 
-
-            //inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World); 
-
-            //playerRb.velocity = inputVector;
-
-            //playerRb.AddForce(0f, 1f * horizontalInput * Time.deltaTime * movementSpeed, ((float)Space.World), ((float)ForceMode.Force));
-
-            //Debug.Log((float)Space.World); 
-
-            //Debug.Log((float)ForceMode.Force); 
-
-        }
-
-
-
-
-
         playerPosition = transform.position;
 
 
@@ -261,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (horizontalInput < 0 && !isOnWall && grounded)
+        if (horizontalInput < 0 && !isOnWall) // && grounded)
 
         {
 
@@ -271,7 +258,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (horizontalInput > 0 && !isOnWall && grounded)
+        if (horizontalInput > 0 && !isOnWall) // && grounded)
 
         {
 
@@ -297,7 +284,7 @@ public class PlayerMovement : MonoBehaviour
 
             dashBlock = false;
 
-            grounded = true;
+            //grounded = true;
 
             isOnGround = false;
 
@@ -321,9 +308,6 @@ public class PlayerMovement : MonoBehaviour
 
         {
 
-            //AnimationTrigger
-            anim.SetTrigger("OnBaseJump");
-
             playerRb.velocity = Vector3.zero;
 
             playerRb.angularVelocity = Vector3.zero;
@@ -331,7 +315,6 @@ public class PlayerMovement : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             isOnGround = false;
-
 
 
         }
@@ -362,20 +345,6 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-
-
-        //if (Input.GetKeyDown(KeyCode.M)) 
-
-        //{ 
-
-        //    SceneManager.LoadScene("LucianosWorkSpace"); 
-
-        //} 
-
-
-
-
-
     }
 
 
@@ -384,7 +353,7 @@ public class PlayerMovement : MonoBehaviour
 
     {
 
-        if (other.gameObject.CompareTag("StarPickUp"))
+        if (other.gameObject.CompareTag("StarPickUp") && other != null)
 
         {
 
@@ -400,19 +369,36 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-    }
+        if (other.gameObject.CompareTag("Latern"))
+        {
+            this.transform.parent = other.transform;
 
+            isOnGround = true;
+
+            dashJump = false;
+        }
+
+    }
+    private void OnTriggerExit(Collider Parent)
+    {
+        if (this.gameObject.name.Equals("Latern"))
+        {
+            if (Parent.gameObject.CompareTag("Latern"))
+            {
+                transform.SetParent(null);
+                Debug.Log("geht das ?");
+            }
+        }
+    }
 
 
     private void OnCollisionEnter(Collision collision)
 
     {
 
-
-
-
-
         // Check if the player is on hart surves and gives him the ability to jump again 
+
+
 
         if (collision.gameObject.CompareTag("Ground"))
 
@@ -422,7 +408,7 @@ public class PlayerMovement : MonoBehaviour
 
             dashJump = false;
 
-            grounded = true;
+            //grounded = true;
 
 
 
@@ -444,11 +430,15 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+
     // check ob spieler an der wand ist 
 
     private void OnCollisionExit(Collision collision)
 
     {
+
+        
+
 
         if (collision.gameObject.CompareTag("Wall"))
 
@@ -475,8 +465,7 @@ public class PlayerMovement : MonoBehaviour
         if (canDash)
 
         {
-            //Animation Trigger for SwordAttack
-            anim.SetTrigger("OnDash");
+
             StartCoroutine(Dash());
 
         }
@@ -527,7 +516,7 @@ public class PlayerMovement : MonoBehaviour
 
         dashBlock = false;
 
-        grounded = true;
+        //grounded = true;
 
         playerRb.useGravity = true;
 
@@ -546,8 +535,7 @@ public class PlayerMovement : MonoBehaviour
         if (canAtack)
 
         {
-            //Animation Trigger for SwordAttack
-            anim.SetTrigger("OnCombat_Sword");
+
             StartCoroutine(SwordAttack());
 
 
@@ -593,8 +581,7 @@ public class PlayerMovement : MonoBehaviour
         if (canThrow && gotStar)
 
         {
-            //Animation Trigger for SwordAttack
-            anim.SetTrigger("OnCombat_Shuriken");
+
             StartCoroutine(NinjaStardAttack());
 
 
@@ -643,19 +630,6 @@ public class PlayerMovement : MonoBehaviour
 
         canThrow = true;
 
-    }
-
-
-
-
-
-
-    // Getter and Setter for the Player, so that it can be used inside the anim and the enemy check if Player is in range
-    public Vector3 PlayerPosition { get => this.playerPosition; set => this.playerPosition = value; }
-
-    public Vector3 GetPosition()
-    {
-        return this.playerPosition;
     }
 
 
