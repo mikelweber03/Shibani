@@ -83,7 +83,17 @@ public class PlayerMovement : MonoBehaviour
 
     private float dashJumpForce = 24f;
 
-    public SpriteRenderer nagatoSprite;
+    public SpriteRenderer haed;
+
+    public SpriteRenderer rightArm;
+
+    public SpriteRenderer body;
+
+    public SpriteRenderer leftArm;
+
+    public SpriteRenderer rightLeg;
+
+    public SpriteRenderer leftLeg;
 
     public SpriteRenderer cloud;
 
@@ -111,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
     //private float wallJump; 
 
-    public bool grounded = true;
+    //public bool grounded = true;
 
     private float climping = 5f;
 
@@ -119,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
 
     {
+        haed = GetComponent<SpriteRenderer>();
 
         starAmont = 0;
 
@@ -481,11 +492,21 @@ public class PlayerMovement : MonoBehaviour
 
         canDash = false;
 
-        nagatoSprite.enabled = false;
+        //haed.enabled = false;
 
-        //smoke.Play(); 
+        //rightArm.enabled = false;
 
-        yield return new WaitForSeconds(0.05f);
+        //body.enabled = false;
+
+        //leftArm.enabled = false;
+
+        //rightLeg.enabled = false;
+
+        //leftLeg.enabled = false;
+
+    //smoke.Play(); 
+
+    yield return new WaitForSeconds(0.05f);
 
         cloud.enabled = true;
 
@@ -507,15 +528,23 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.05f);
 
-        nagatoSprite.enabled = true;
+        //haed.enabled = true;
+
+        //rightArm.enabled = true;
+
+        //body.enabled = true;
+
+        //leftArm.enabled = true;
+
+        //rightLeg.enabled = true;
+
+        //leftLeg.enabled = true;
 
         dashJump = true;
 
         yield return new WaitForSeconds(0.1f);
 
         dashBlock = false;
-
-        //grounded = true;
 
         playerRb.useGravity = true;
 
