@@ -108,6 +108,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float climping = 5f;
 
+    [Header("Animation")]
+
+    Animator anim;
 
 
     void Start()
@@ -119,6 +122,9 @@ public class PlayerMovement : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
 
         Physics.gravity *= gravityModifier;
+
+        //Connect Animator to Script
+        anim = GetComponent<Animator>();
 
 
 
@@ -224,6 +230,9 @@ public class PlayerMovement : MonoBehaviour
 
         {
 
+            //Animation Trigger
+            //anim.SetBool("On")
+
             transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World); 
 
             //inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World); 
@@ -311,6 +320,9 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !crouch && !isOnWall)
 
         {
+
+            //AnimationTrigger
+            anim.SetTrigger("OnBaseJump");
 
             playerRb.velocity = Vector3.zero;
 
@@ -463,7 +475,8 @@ public class PlayerMovement : MonoBehaviour
         if (canDash)
 
         {
-
+            //Animation Trigger for SwordAttack
+            anim.SetTrigger("OnDash");
             StartCoroutine(Dash());
 
         }
@@ -533,7 +546,8 @@ public class PlayerMovement : MonoBehaviour
         if (canAtack)
 
         {
-
+            //Animation Trigger for SwordAttack
+            anim.SetTrigger("OnCombat_Sword");
             StartCoroutine(SwordAttack());
 
 
@@ -579,7 +593,8 @@ public class PlayerMovement : MonoBehaviour
         if (canThrow && gotStar)
 
         {
-
+            //Animation Trigger for SwordAttack
+            anim.SetTrigger("OnCombat_Shuriken");
             StartCoroutine(NinjaStardAttack());
 
 
@@ -629,6 +644,11 @@ public class PlayerMovement : MonoBehaviour
         canThrow = true;
 
     }
+
+
+
+
+
 
     // Getter and Setter for the Player, so that it can be used inside the anim and the enemy check if Player is in range
     public Vector3 PlayerPosition { get => this.playerPosition; set => this.playerPosition = value; }
