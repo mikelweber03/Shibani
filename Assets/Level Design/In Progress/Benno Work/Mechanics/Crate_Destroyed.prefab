@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2264767080000117856}
   - component: {fileID: 5837765477312655982}
   - component: {fileID: 1021269240769157526}
+  - component: {fileID: 7741427667969219724}
   m_Layer: 0
   m_Name: crate_low_cell.001
   m_TagString: Untagged
@@ -115,6 +116,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6707222, y: 0.7233074, z: 1.8964081}
   m_Center: {x: -0.12445428, y: -0.06551474, z: -0.16759837}
+--- !u!114 &7741427667969219724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111551357361472930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &657789458952147662
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +141,7 @@ GameObject:
   - component: {fileID: 2741103565044987190}
   - component: {fileID: 5942437362902595073}
   - component: {fileID: 7589608901667022805}
+  - component: {fileID: 7790991212692430144}
   m_Layer: 0
   m_Name: crate_low_cell.010
   m_TagString: Untagged
@@ -230,6 +244,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9810816, y: 1.1942176, z: 1.1719077}
   m_Center: {x: 0.1958462, y: -0.012783527, z: 0.34790188}
+--- !u!114 &7790991212692430144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657789458952147662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1567752457472687297
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +269,7 @@ GameObject:
   - component: {fileID: 6497983911584947}
   - component: {fileID: 4491327864471938462}
   - component: {fileID: 7579078114924158193}
+  - component: {fileID: 4245560919477428408}
   m_Layer: 0
   m_Name: crate_low_cell
   m_TagString: Untagged
@@ -345,6 +372,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1202066, y: 1.8436627, z: 1.8494}
   m_Center: {x: 0.30794895, y: -0.06129247, z: -0.14480248}
+--- !u!114 &4245560919477428408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567752457472687297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1591820891084154813
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +397,7 @@ GameObject:
   - component: {fileID: 2954058885399115144}
   - component: {fileID: 6973780336560732375}
   - component: {fileID: 7146360526261311726}
+  - component: {fileID: 3458613091432897394}
   m_Layer: 0
   m_Name: crate_low_cell.006
   m_TagString: Untagged
@@ -460,6 +500,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9777666, y: 0.76644707, z: 0.877608}
   m_Center: {x: -0.29083768, y: 0.07408203, z: -0.023452342}
+--- !u!114 &3458613091432897394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591820891084154813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3013245584431196998
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +525,7 @@ GameObject:
   - component: {fileID: 9115531559196115432}
   - component: {fileID: 2135585333577167580}
   - component: {fileID: 6110260746410940737}
+  - component: {fileID: 8008384335551761672}
   m_Layer: 0
   m_Name: crate_low_cell.004
   m_TagString: Untagged
@@ -575,6 +628,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0092604, y: 1.0182234, z: 1.0109612}
   m_Center: {x: 0.016510636, y: 0.010364234, z: 0.34289297}
+--- !u!114 &8008384335551761672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3013245584431196998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3971413740043238777
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,6 +653,7 @@ GameObject:
   - component: {fileID: 8960892616487266684}
   - component: {fileID: 2964833106122875999}
   - component: {fileID: 5365478032518835254}
+  - component: {fileID: 8332085487672235340}
   m_Layer: 0
   m_Name: crate_low_cell.009
   m_TagString: Untagged
@@ -690,6 +756,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.386012, y: 0.73401713, z: 2.1411858}
   m_Center: {x: 0.32348365, y: 0.10757457, z: 0.006858349}
+--- !u!114 &8332085487672235340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971413740043238777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4206114766712413279
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +781,7 @@ GameObject:
   - component: {fileID: 5512698545877904892}
   - component: {fileID: 4769357110576380123}
   - component: {fileID: 4916898546732384343}
+  - component: {fileID: 3970261246268910091}
   m_Layer: 0
   m_Name: crate_low_cell.008
   m_TagString: Untagged
@@ -805,6 +884,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4125729, y: 1.0271156, z: 1.3033526}
   m_Center: {x: 0.1436829, y: -0.19933406, z: -0.20988412}
+--- !u!114 &3970261246268910091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4206114766712413279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4257946835119475008
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,6 +909,7 @@ GameObject:
   - component: {fileID: 1002135100818191917}
   - component: {fileID: 7070520647784875582}
   - component: {fileID: 630406879497668511}
+  - component: {fileID: 6574537318300104548}
   m_Layer: 0
   m_Name: crate_low_cell.002
   m_TagString: Untagged
@@ -920,6 +1012,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.91695803, y: 1.2726727, z: 1.1691912}
   m_Center: {x: 0.03189242, y: -0.0051122606, z: 0.39413857}
+--- !u!114 &6574537318300104548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4257946835119475008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5037083279147959083
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +1037,7 @@ GameObject:
   - component: {fileID: 923669282768857483}
   - component: {fileID: 1883209442946538958}
   - component: {fileID: 5299285307601430136}
+  - component: {fileID: 1744249781732537753}
   m_Layer: 0
   m_Name: crate_low_cell.003
   m_TagString: Untagged
@@ -1034,6 +1139,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4920273, y: 1.0667392, z: 1.7721641}
   m_Center: {x: -0.06254414, y: -0.28969878, z: -0.025224388}
+--- !u!114 &1744249781732537753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5037083279147959083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6584230178117837099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,6 +1164,7 @@ GameObject:
   - component: {fileID: 6228741313604718730}
   - component: {fileID: 9154778827879281592}
   - component: {fileID: 3887732859315702721}
+  - component: {fileID: 5177046538807947706}
   m_Layer: 0
   m_Name: crate_low_cell.005
   m_TagString: Untagged
@@ -1149,6 +1267,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1170571, y: 1.4488158, z: 1.554419}
   m_Center: {x: -0.3742901, y: -0.17107901, z: 0.12393272}
+--- !u!114 &5177046538807947706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584230178117837099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7257805260025731989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,6 +1292,7 @@ GameObject:
   - component: {fileID: 6477494978017638220}
   - component: {fileID: 4945119786605055957}
   - component: {fileID: 2942665120415389526}
+  - component: {fileID: 4610036300241051473}
   m_Layer: 0
   m_Name: crate_low_cell.011
   m_TagString: Untagged
@@ -1264,6 +1395,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3797183, y: 1.3820627, z: 0.805056}
   m_Center: {x: -0.16134506, y: 0.060873657, z: -0.08958177}
+--- !u!114 &4610036300241051473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257805260025731989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7399602019115740762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1476,7 @@ GameObject:
   - component: {fileID: 4293079589499806021}
   - component: {fileID: 4825086688113682062}
   - component: {fileID: 4835524431076123132}
+  - component: {fileID: 4145422603055551631}
   m_Layer: 0
   m_Name: crate_low_cell.007
   m_TagString: Untagged
@@ -1435,3 +1579,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1523039, y: 1.0918434, z: 0.80610526}
   m_Center: {x: -0.19920202, y: 0.1763177, z: 0.14961332}
+--- !u!114 &4145422603055551631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538064776015934870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2292c302da44c4446a80f01429a4ac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
