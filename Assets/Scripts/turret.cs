@@ -103,6 +103,7 @@ public class turret : MonoBehaviour
         {
             animator.SetTrigger("OnEnemyDeath");
             Destroy(this.gameObject, 15f);
+            VisualEffect.Instantiate(enemyDeath);
         }
     }
 
