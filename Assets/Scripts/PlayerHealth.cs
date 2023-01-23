@@ -53,6 +53,7 @@ public class PlayerHealth : MonoBehaviour
                 //playerHit.Play();
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
+                Debug.Log("Why");
 
             }
             else if (currentHealth == 1)
@@ -63,6 +64,7 @@ public class PlayerHealth : MonoBehaviour
                 deathmenu.ToggleEndMenu();
                 player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
+            canbedamaged = true;
         }
     }
     //Check if player can loose health
@@ -78,9 +80,10 @@ public class PlayerHealth : MonoBehaviour
                 knock.Knockback();
                 //playerHit.Play();
                 canbedamaged = false;
-                blink.tookDamage();
+                //blink.tookDamage();
+                Debug.Log("why");
                 _healthBar.ChangeHealth(currentHealth);
-                return;
+                
                 
             }
             else if (currentHealth == 1)

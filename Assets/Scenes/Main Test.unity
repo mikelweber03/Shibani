@@ -7932,6 +7932,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f5e9e8acadaf5c4487abdd4ebd578d7, type: 3}
+--- !u!1 &1088360735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7777790188044410233, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+  m_PrefabInstance: {fileID: 1240440862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1088360743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088360735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be3819dc60b7f44e87193633df1b562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOver: 0
+  isOnGround: 1
+  crouch: 0
+  playerPosition: {x: 0, y: 0, z: 0}
+  movementSpeed: 20
+  acceleration: 2
+  decceleration: 2
+  velPower: 2
+  swortMeshRenderer: {fileID: 0}
+  swortBoxCollider: {fileID: 0}
+  maxstarAmont: 3
+  starBar: {fileID: 0}
+  ninjaStar: {fileID: 0}
+  gotStar: 0
+  canThrow: 0
+  throwTime: 0
+  smoke: {fileID: 0}
+  dashJump: 0
+  haed: {fileID: 0}
+  rightArm: {fileID: 0}
+  body: {fileID: 0}
+  leftArm: {fileID: 0}
+  rightLeg: {fileID: 0}
+  leftLeg: {fileID: 0}
+  cloud: {fileID: 0}
+  dashBlock: 0
+  canDash: 1
+  floatTime: 1
+  isOnWall: 0
 --- !u!1001 &1125364181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9049,6 +9095,10 @@ PrefabInstance:
     - target: {fileID: 7777790188044410233, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
       propertyPath: m_Name
       value: Nagato
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089861773036989796, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9089861773036989796, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
       propertyPath: nagatoSprite
