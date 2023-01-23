@@ -6,8 +6,8 @@ using UnityEngine.VFX;
 
 public class EnemyMovement1 : MonoBehaviour
 {
-    [SerializeField] private float offsetRight = 0, offsetLeft = 0, speed = 1, offsetUp = 0, offsetDown = 0;
-    [SerializeField] private bool hasReachedRight = false, hasReachedLeft = false, hasReachedUp = false, hasReachedDown = false, movesHorizontal = false;
+    [SerializeField] private float offsetRight = 0, offsetLeft = 0, speed = 1;
+    [SerializeField] private bool hasReachedRight = false, hasReachedLeft = false;
     private int count = 0;
     private Vector3 start;
     private VisualEffect enemyHit;

@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     public DeathMenu deathmenu;
     public CharacterBlink blink;
     public CheckHealth _healthBar;
-    public bool canbedamaged = true;
+    private bool canbedamaged = true;
     public GameObject player;
     private PlayerKnockback knock;
     private VisualEffect playerHit;
@@ -64,6 +64,7 @@ public class PlayerHealth : MonoBehaviour
                 deathmenu.ToggleEndMenu();
                 player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
+            canbedamaged = true;
         }
     }
     //Check if player can loose health
