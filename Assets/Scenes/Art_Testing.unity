@@ -586,6 +586,10 @@ PrefabInstance:
       propertyPath: starBar
       value: 
       objectReference: {fileID: 1378654930}
+    - target: {fileID: 9089861773036989796, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
 --- !u!1 &210897436
@@ -1841,11 +1845,11 @@ GameObject:
   - component: {fileID: 575724434}
   m_Layer: 0
   m_Name: Global Volume
-  m_TagString: Untagged
+  m_TagString: Global Volume
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &575724433
 Transform:
   m_ObjectHideFlags: 0
@@ -2053,6 +2057,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30e36017f23a9154f9d119ca5164f958, type: 3}
+--- !u!1 &656709504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7777790188044410233, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+  m_PrefabInstance: {fileID: 167639091}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &674399583
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,6 +2899,14 @@ PrefabInstance:
     - target: {fileID: 625753417503736243, guid: 2f575fef43772d74a8f402786bae7430, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 625753417503736254, guid: 2f575fef43772d74a8f402786bae7430, type: 3}
+      propertyPath: vol
+      value: 
+      objectReference: {fileID: 575724434}
+    - target: {fileID: 625753417503736254, guid: 2f575fef43772d74a8f402786bae7430, type: 3}
+      propertyPath: SaturationValue
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 625753417503736255, guid: 2f575fef43772d74a8f402786bae7430, type: 3}
       propertyPath: m_Pivot.x
@@ -4944,6 +4961,47 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7777790188044410231, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
   m_PrefabInstance: {fileID: 167639091}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1716691789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656709504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be3819dc60b7f44e87193633df1b562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOver: 0
+  isOnGround: 1
+  crouch: 0
+  playerPosition: {x: 0, y: 0, z: 0}
+  movementSpeed: 20
+  acceleration: 2
+  decceleration: 2
+  velPower: 2
+  swortMeshRenderer: {fileID: 0}
+  swortBoxCollider: {fileID: 0}
+  maxstarAmont: 3
+  starBar: {fileID: 0}
+  ninjaStar: {fileID: 0}
+  gotStar: 0
+  canThrow: 0
+  throwTime: 0
+  smoke: {fileID: 0}
+  dashJump: 0
+  haed: {fileID: 0}
+  rightArm: {fileID: 0}
+  body: {fileID: 0}
+  leftArm: {fileID: 0}
+  rightLeg: {fileID: 0}
+  leftLeg: {fileID: 0}
+  cloud: {fileID: 0}
+  dashBlock: 0
+  canDash: 1
+  floatTime: 1
+  isOnWall: 0
 --- !u!1 &1726848573
 GameObject:
   m_ObjectHideFlags: 0
