@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Animation")]
 
-    Animator anim;
+    public Animator anim;
 
     private float playerVelocity;
 
@@ -129,11 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
         Physics.gravity *= gravityModifier;
 
-        //Connect Animator to Script
-        anim = GetComponentInChildren<Animator>();
-
-
-
+        
     }
 
 
@@ -193,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
             dashJump = false;
             anim.SetBool("CanDashJump", false);
 
-            transform.Translate(Vector3.up * verticalInput * Time.deltaTime * climping);
+            transform.Translate(Vector3.up * (verticalInput * Time.deltaTime * climping));
 
             if (isOnWall && Input.GetKeyDown(KeyCode.Space) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button0))
 
@@ -626,13 +622,7 @@ public class PlayerMovement : MonoBehaviour
             //Animation Trigger for SwordAttack
             anim.SetTrigger("OnCombat_Shuriken");
             StartCoroutine(NinjaStardAttack());
-
-
-
         }
-
-
-
     }
 
 
@@ -675,8 +665,3 @@ public class PlayerMovement : MonoBehaviour
 
     }
 }
-
-
-
-
-
