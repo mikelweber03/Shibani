@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     public DeathMenu deathmenu;
     public CharacterBlink blink;
     public CheckHealth _healthBar;
-    private bool canbedamaged = true;
+    public bool canbedamaged = true;
     public GameObject player;
     private PlayerKnockback knock;
     private VisualEffect playerHit;
