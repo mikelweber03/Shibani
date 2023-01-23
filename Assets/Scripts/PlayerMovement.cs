@@ -102,11 +102,20 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isOnWall = false;
 
+
+
     //private float wallJump; 
 
     public bool grounded = true;
 
+
     private float climping = 5f;
+
+    [Header("Animation")]
+
+    public Animator anim;
+
+    private float playerVelocity;
 
 
 
@@ -120,8 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
         Physics.gravity *= gravityModifier;
 
-
-
+        
     }
 
 
@@ -138,6 +146,13 @@ public class PlayerMovement : MonoBehaviour
 
         verticalInput = Input.GetAxis("Vertical");
 
+        // Anim stats for Walking
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            anim.SetFloat("MovementSpeed", 1);
+        }
+        else anim.SetFloat("MovementSpeed", 0);
+
 
 
         // let the Player shoot a Ninja Star 
@@ -145,7 +160,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar && !crouch)
 
         {
-
             NinjaStarAbility();
 
 
@@ -173,14 +187,17 @@ public class PlayerMovement : MonoBehaviour
             grounded = false;
 
             dashJump = false;
+            anim.SetBool("CanDashJump", false);
 
-            transform.Translate(Vector3.up * verticalInput * Time.deltaTime * climping);
+            transform.Translate(Vector3.up * (verticalInput * Time.deltaTime * climping));
 
             if (isOnWall && Input.GetKeyDown(KeyCode.Space) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button0))
 
             {
 
                 isOnWall = false;
+                anim.SetBool("IsGrounded_Wall", false);
+                anim.SetTrigger("OnWallJump");
 
                 playerRb.useGravity = true;
 
@@ -207,6 +224,7 @@ public class PlayerMovement : MonoBehaviour
                 playerRb.AddRelativeForce(-1, 3, 0, ForceMode.Impulse);
 
                 isOnWall = false;
+                anim.SetBool("IsGrounded_Wall", false);
 
                 grounded = true;
 
@@ -224,7 +242,10 @@ public class PlayerMovement : MonoBehaviour
 
         {
 
-            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World); 
+            //Animation Trigger
+            //anim.SetBool("On")
+
+            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
 
             //inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World); 
 
@@ -291,6 +312,7 @@ public class PlayerMovement : MonoBehaviour
             grounded = true;
 
             isOnGround = false;
+            anim.SetBool("IsGrounded_Ground", false);
 
             playerRb.velocity = Vector3.zero;
 
@@ -299,6 +321,7 @@ public class PlayerMovement : MonoBehaviour
             playerRb.AddForce(Vector3.up * dashJumpForce, ForceMode.Impulse);
 
             dashJump = false;
+            anim.SetBool("CanDashJump", false);
 
 
 
@@ -312,6 +335,9 @@ public class PlayerMovement : MonoBehaviour
 
         {
 
+            //AnimationTrigger
+            anim.SetTrigger("OnBaseJump");
+
             playerRb.velocity = Vector3.zero;
 
             playerRb.angularVelocity = Vector3.zero;
@@ -319,6 +345,7 @@ public class PlayerMovement : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             isOnGround = false;
+            anim.SetBool("IsGrounded_Ground", false);
 
 
 
@@ -407,10 +434,13 @@ public class PlayerMovement : MonoBehaviour
         {
 
             isOnGround = true;
+            anim.SetBool("IsGrounded_Ground", true);
 
             dashJump = false;
+            anim.SetBool("CanDashJump", false);
 
             grounded = true;
+
 
 
 
@@ -421,8 +451,10 @@ public class PlayerMovement : MonoBehaviour
         {
 
             isOnWall = true;
+            anim.SetBool("IsGrounded_Wall", true);
 
             dashJump = false;
+            anim.SetBool("CanDashJump", false);
 
 
 
@@ -443,6 +475,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             isOnWall = false;
+            anim.SetBool("IsGrounded_Wall", false);
 
             playerRb.useGravity = true;
 
@@ -463,7 +496,8 @@ public class PlayerMovement : MonoBehaviour
         if (canDash)
 
         {
-
+            //Animation Trigger for SwordAttack
+            anim.SetTrigger("OnDash");
             StartCoroutine(Dash());
 
         }
@@ -479,6 +513,7 @@ public class PlayerMovement : MonoBehaviour
         dashBlock = true;
 
         canDash = false;
+        anim.SetBool("CanDash", false);
 
         nagatoSprite.enabled = false;
 
@@ -509,6 +544,7 @@ public class PlayerMovement : MonoBehaviour
         nagatoSprite.enabled = true;
 
         dashJump = true;
+        anim.SetBool("CanDashJump", true);
 
         yield return new WaitForSeconds(0.1f);
 
@@ -521,6 +557,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(timeBtweDashes);
 
         canDash = true;
+        anim.SetBool("CanDash", true);
 
     }
 
@@ -533,7 +570,8 @@ public class PlayerMovement : MonoBehaviour
         if (canAtack)
 
         {
-
+            //Animation Trigger for SwordAttack
+            anim.SetTrigger("OnCombat_Sword");
             StartCoroutine(SwordAttack());
 
 
@@ -551,6 +589,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         canAtack = false;
+        anim.SetBool("CanAttack", false);
 
         swortMeshRenderer.enabled = true;
 
@@ -565,6 +604,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(atackCoolDown);
 
         canAtack = true;
+        anim.SetBool("CanAttack", true);
 
     }
 
@@ -579,15 +619,10 @@ public class PlayerMovement : MonoBehaviour
         if (canThrow && gotStar)
 
         {
-
+            //Animation Trigger for SwordAttack
+            anim.SetTrigger("OnCombat_Shuriken");
             StartCoroutine(NinjaStardAttack());
-
-
-
         }
-
-
-
     }
 
 
@@ -629,17 +664,4 @@ public class PlayerMovement : MonoBehaviour
         canThrow = true;
 
     }
-
-    // Getter and Setter for the Player, so that it can be used inside the anim and the enemy check if Player is in range
-    public Vector3 PlayerPosition { get => this.playerPosition; set => this.playerPosition = value; }
-
-    public Vector3 GetPosition()
-    {
-        return this.playerPosition;
-    }
-
-
-
-
-
 }
