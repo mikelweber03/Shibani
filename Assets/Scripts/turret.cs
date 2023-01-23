@@ -9,7 +9,7 @@ public class turret : MonoBehaviour
 
     private CharacterController player;
     AnimationController anim;
-    Animator animator;
+    public Animator animator;
 
     SphereCollider Awareness;
 
@@ -43,8 +43,8 @@ public class turret : MonoBehaviour
 
     private int count = 0;
     private Vector3 start;
-    private VisualEffect enemyHit;
-    private VisualEffect enemyDeath;
+    public VisualEffect enemyHit;
+    public VisualEffect enemyDeath;
     private AnimationEvent TurretHitEvent;
 
 
@@ -53,10 +53,7 @@ public class turret : MonoBehaviour
     {
         //InvokeRepeating("CatBulletLeft", 1, 3);
         anim = turret.FindObjectOfType<AnimationController>();
-        animator = gameObject.GetComponent<Animator>();
         Awareness = gameObject.GetComponentInChildren<SphereCollider>();
-        enemyHit = GetComponentInChildren<VisualEffect>();
-        enemyDeath = GetComponentInChildren<VisualEffect>();
         
         //position = this.transform.position.x;
     }
@@ -71,7 +68,7 @@ public class turret : MonoBehaviour
         {
             Fire();
         }
-     }
+    }
 
 
     private void Fire()
@@ -88,13 +85,13 @@ public class turret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Sword")
+        if (other.gameObject.CompareTag("Sword"))
         {
             //Destroy(this.gameObject);
             bgotHit = true;
             TakeDamage();
         }
-        if (other.gameObject.tag == "NinjaStern")
+        if (other.gameObject.CompareTag("NinjaStern"))
         {
             Destroy(other.gameObject);
             bgotHit = true;
@@ -134,8 +131,7 @@ public class turret : MonoBehaviour
         if (bisDead)
         {
             animator.SetTrigger("OnEnemyDeath");
-            Destroy(this.gameObject, 15f);
-            VisualEffect.Instantiate(enemyDeath);
+            StartCoroutine(Waiter());           
         }
     }
 
@@ -150,6 +146,7 @@ public class turret : MonoBehaviour
         }
         else
             count++;
+        VisualEffect.Instantiate(enemyHit);
     }
 
     void playVFX()
@@ -171,6 +168,13 @@ public class turret : MonoBehaviour
             TurretFire();
             bisFiring = false;
         }
+    }
+
+    IEnumerator Waiter()
+    {
+        VisualEffect.Instantiate(enemyDeath);
+        yield return new WaitForSeconds(3);
+        Destroy(this.gameObject, 15f);
     }
 
 
