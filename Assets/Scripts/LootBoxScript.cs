@@ -47,7 +47,7 @@ public class LootBoxScript : MonoBehaviour
 
         {
 
-            Debug.Log("healthSword");
+            //Debug.Log("healthSword");
 
             //Boxhit.Play(); 
 
@@ -77,7 +77,7 @@ public class LootBoxScript : MonoBehaviour
 
                 Destroy(gameObject);
 
-                Debug.Log("Death");
+                // Debug.Log("Death");
 
             }
 
@@ -89,7 +89,7 @@ public class LootBoxScript : MonoBehaviour
 
         {
 
-            Debug.Log("healthStern");
+            // Debug.Log("healthStern");
 
             //Boxhit.Play(); 
 
@@ -121,7 +121,7 @@ public class LootBoxScript : MonoBehaviour
 
 
 
-                Debug.Log("Death");
+                // Debug.Log("Death");
 
             }
 
