@@ -18,6 +18,7 @@ public class DeathMenu : MonoBehaviour
     //Reload the Scene you are currently on
     public void Restart()
     {
+     
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
 
