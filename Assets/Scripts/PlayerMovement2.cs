@@ -68,7 +68,8 @@ public class PlayerMovement2 : MonoBehaviour
 
     public bool gotStar;
 
-    public bool canThrow;
+    [SerializeField]
+    private bool canThrow = true;
 
     public float throwTime;
 
@@ -156,7 +157,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isOnWall && !dashBlock)  // grounded)
+        if (!isOnWall && !dashBlock) 
         {
             float targetSpeed = horizontalInput * movementSpeed;
 
@@ -187,12 +188,12 @@ public class PlayerMovement2 : MonoBehaviour
 
         // let the Player shoot a Ninja Star 
 
-        if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar && !crouch)
+        if (Input.GetKeyDown(KeyCode.Q) && !isOnWall  && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar)
 
         {
 
             NinjaStarAbility();
-
+            Debug.Log("sternwurf");
         }
 
         // Anim stats for Walking
@@ -223,7 +224,10 @@ public class PlayerMovement2 : MonoBehaviour
             //grounded = false;
 
             dashJump = false;
+            
             anim.SetBool("CanDashJump", false);
+
+            canThrow = false;
 
             transform.Translate(Vector3.up * verticalInput * Time.deltaTime * climping);
 
@@ -238,6 +242,7 @@ public class PlayerMovement2 : MonoBehaviour
                 anim.SetTrigger("OnWallJump");
 
                 playerRb.useGravity = true;
+                canThrow = true;
 
             }
 
@@ -257,6 +262,7 @@ public class PlayerMovement2 : MonoBehaviour
                 playerRb.AddRelativeForce(-1, 3, 0, ForceMode.Impulse);
 
                 isOnWall = false;
+                canThrow = true;
                 anim.SetBool("IsGrounded_Wall", false);
 
                 //grounded = true;
@@ -399,7 +405,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             starBar.ChangeStar(starAmont);
 
-            // Debug.Log("pickup");
+             Debug.Log("pickup");
 
         }
 
@@ -643,9 +649,9 @@ public class PlayerMovement2 : MonoBehaviour
 
         {
             //Animation Trigger for SwordAttack
-            anim.SetTrigger("OnCombat_Shuriken");
+            //anim.SetTrigger("OnCombat_Shuriken");
             StartCoroutine(NinjaStardAttack());
-
+            Debug.Log("start ninjastar");
 
 
         }
@@ -670,7 +676,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             gotStar = true;
 
-            //Debug.Log("gotstar");
+            Debug.Log("gotstar");
 
         }
 
@@ -680,7 +686,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             gotStar = false;
 
-            //Debug.Log("nostar");
+            Debug.Log("nostar");
 
         }
 
