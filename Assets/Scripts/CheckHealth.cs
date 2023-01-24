@@ -24,12 +24,12 @@ public class CheckHealth : MonoBehaviour
     void Start()
     {
         //_heart = GetComponent<Image>();
-        CA.saturation.value = _heartSaturation;
+       // CA.saturation.value = _heartSaturation;
         _heart = GameObject.Find("Heart").GetComponent<Image>();
         _heart1 = GameObject.Find("Heart1").GetComponent<Image>();
         _heart2 = GameObject.Find("Heart2").GetComponent<Image>();
         _heart3 = GameObject.Find("Heart3").GetComponent<Image>();
-        vol.profile.TryGet<ColorAdjustments>(out CA);
+        //vol.profile.TryGet<ColorAdjustments>(out CA);
 
     }
     public void ChangeHealth(int currentHealth)
@@ -41,7 +41,7 @@ public class CheckHealth : MonoBehaviour
             _heart1.enabled = false;
             _heart2.enabled = false;
             _heart3.enabled = false;
-            CA.saturation.value = _heartSaturation;
+            // CA.saturation.value = _heartSaturation;
 
         }
 
@@ -51,7 +51,7 @@ public class CheckHealth : MonoBehaviour
             _heart1.enabled = true;
             _heart2.enabled = false;
             _heart3.enabled = false;
-            CA.saturation.value = _heart1Saturation;
+            // CA.saturation.value = _heart1Saturation;
 
         }
         if (currentHealth == 1)
@@ -60,7 +60,7 @@ public class CheckHealth : MonoBehaviour
             _heart1.enabled = false;
             _heart2.enabled = true;
             _heart3.enabled = false;
-            CA.saturation.value = _heart2Saturation;
+            // CA.saturation.value = _heart2Saturation;
 
         }
         if (currentHealth == 0)
@@ -69,7 +69,7 @@ public class CheckHealth : MonoBehaviour
             _heart1.enabled = false;
             _heart2.enabled = false;
             _heart3.enabled = true;
-            CA.saturation.value = _heart3Saturation;
+            // CA.saturation.value = _heart3Saturation;
 
         }
     }

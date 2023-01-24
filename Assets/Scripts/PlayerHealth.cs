@@ -91,7 +91,7 @@ public class PlayerHealth : MonoBehaviour
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
                 deathmenu.ToggleEndMenu();
-                player.GetComponent("PlayerMovement").gameObject.SetActive(false);
+                player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
             }
             canbedamaged = true;
         }

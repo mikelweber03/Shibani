@@ -143,7 +143,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         Physics.gravity *= gravityModifier;
 
-        Debug.Log(Physics.gravity);
+       // Debug.Log(Physics.gravity);
 
         starBar = FindObjectOfType<NinjaStarUI>();
 
@@ -399,7 +399,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             starBar.ChangeStar(starAmont);
 
-            Debug.Log("pickup");
+            // Debug.Log("pickup");
 
         }
 
@@ -419,7 +419,7 @@ public class PlayerMovement2 : MonoBehaviour
         if (collider.gameObject.CompareTag("Latern"))
         {
             transform.SetParent(null);
-            Debug.Log("geht das ?");
+            //Debug.Log("geht das ?");
         }
 
     }
@@ -670,7 +670,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             gotStar = true;
 
-            Debug.Log("gotstar");
+            //Debug.Log("gotstar");
 
         }
 
@@ -680,7 +680,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             gotStar = false;
 
-            Debug.Log("nostar");
+            //Debug.Log("nostar");
 
         }
 
