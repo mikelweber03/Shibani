@@ -24,13 +24,13 @@ public class CheckHealth : MonoBehaviour
     void Start()
     {
         //_heart = GetComponent<Image>();
-        CA.saturation.value = _heartSaturation;
+        
         _heart = GameObject.Find("Heart").GetComponent<Image>();
         _heart1 = GameObject.Find("Heart1").GetComponent<Image>();
         _heart2 = GameObject.Find("Heart2").GetComponent<Image>();
         _heart3 = GameObject.Find("Heart3").GetComponent<Image>();
         vol.profile.TryGet<ColorAdjustments>(out CA);
-
+        CA.saturation.value = _heartSaturation;
     }
     public void ChangeHealth(int currentHealth)
     {
