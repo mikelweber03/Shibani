@@ -121,7 +121,7 @@ public class MovingLantern : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         
         float width = transform.localScale.x * meshWidth;
