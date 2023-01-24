@@ -78,7 +78,7 @@ public class PlayerHealth : MonoBehaviour
                 knock.Knockback();
                 //playerHit.Play();
                 canbedamaged = false;
-                blink.tookDamage();
+                //blink.tookDamage();
                 _healthBar.ChangeHealth(currentHealth);
                 return;
                 
