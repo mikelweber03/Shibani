@@ -7,22 +7,42 @@ using UnityEngine.VFX;
 public class EnemyMovement1 : MonoBehaviour
 {
     [SerializeField] private float offsetRight = 0, offsetLeft = 0, speed = 1;
+    
     [SerializeField] private bool hasReachedRight = false, hasReachedLeft = false;
+    
     private int count = 0;
+    
     private Vector3 start;
+    
     private VisualEffect enemyHit;
+
+    [SerializeField] private Animator anim;
+
+    [Header("Animations")] private bool isMoving;
+    
+    
     // public BoxCollider playerBoxCollider;
+    
+    
+    
+    
+    
     void Awake()
     {
         start.x = transform.position.x;
         enemyHit = this.GetComponent<VisualEffect>();
-        
+        anim.SetBool("isMoving", true);
+
     }
 
     
     void Update()
     {
         MoveHorizontal();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            attack();
+        }
 
     }
 
@@ -65,12 +85,14 @@ public class EnemyMovement1 : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(start.x + offset, transform.position.y, transform.position.z), speed * Time.deltaTime);
         }
     }
-
+    
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Sword")
         {
             enemyHit.Play();
+            anim.SetTrigger("gotHit");  
             if (count >= 1)
             {
                 Destroy(this.gameObject);
@@ -84,6 +106,7 @@ public class EnemyMovement1 : MonoBehaviour
         if (other.gameObject.tag == "NinjaStern")
         {
             enemyHit.Play();
+            anim.SetTrigger("gotHit");
             if (count >= 1)
             {
                 Destroy(this.gameObject);
@@ -98,5 +121,13 @@ public class EnemyMovement1 : MonoBehaviour
 
     }
 
+    private void attack()
+    {
+        anim.SetTrigger("Attack");
+    }
+    
+    //Add coroutine to delay death so that animation gotHit is played beforehand
+    
+    
 }
 
