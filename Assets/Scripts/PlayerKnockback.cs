@@ -21,10 +21,10 @@ public class PlayerKnockback : MonoBehaviour
     IEnumerator knockb(){
        playerRb.velocity = Vector3.zero;
        playerRb.angularVelocity = Vector3.zero;
-       GameObject.Find("Nagato").GetComponent<PlayerMovement>().enabled = false;
+       GameObject.FindWithTag("Player").GetComponent<PlayerMovement2>().enabled = false;
        playerRb.AddRelativeForce(-8, 8, 0, ForceMode.Impulse);
        yield return new WaitForSeconds(falltime);
-       GameObject.Find("Nagato").GetComponent<PlayerMovement>().enabled = true;
+       GameObject.Find("Nagato").GetComponent<PlayerMovement2>().enabled = true;
     }
 
     
