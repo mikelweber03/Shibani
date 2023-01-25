@@ -772,7 +772,7 @@ GameObject:
   - component: {fileID: 5410573000927539283}
   - component: {fileID: 5410573000927539282}
   m_Layer: 0
-  m_Name: CAT_Enemy
+  m_Name: Melee_Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
