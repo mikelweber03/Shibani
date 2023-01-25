@@ -106,9 +106,9 @@ public class PlayerMovement2 : MonoBehaviour
 
     private float dashingTime = 0.2f;
 
-    //private float dashDelay = 0.2f; 
+    //private float dashDelay = 0.2f;ï¿½
 
-    //public float dashJumpTime; 
+    //public float dashJumpTime;ï¿½
 
     public bool floatTime = true;
 
@@ -118,7 +118,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     public bool isOnWall = false;
 
-    //private float wallJump; 
+    //private float wallJump;ï¿½
 
     //public bool grounded = true;
 
@@ -177,7 +177,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     {
 
-        // eingabe für die bewegung in wertikalerweise  
+        // eingabe fï¿½r die bewegung in wertikalerweise ï¿½
 
         horizontalInput = Input.GetAxis("Horizontal");
 
@@ -185,7 +185,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
 
-        // let the Player shoot a Ninja Star 
+        // let the Player shoot a Ninja Starï¿½
 
         if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar && !crouch)
 
@@ -208,7 +208,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
 
-        // macht die mögliochkeiten um an der wand zu kleben sowie einen walljump 
+        // macht die mï¿½gliochkeiten um an der wand zu kleben sowie einen walljumpï¿½
 
         if (isOnWall)
 
@@ -245,7 +245,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
 
-            // release from wall 
+            // release from wallï¿½
 
             else if (isOnWall && Input.GetKeyDown(KeyCode.Q) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1))
 
@@ -274,7 +274,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
 
-        // flipp the player sprite 
+        // flipp the player spriteï¿½
 
 
 
@@ -302,7 +302,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
 
-        // sprung nach dem dash 
+        // sprung nach dem dashï¿½
 
         if (Input.GetKeyDown(KeyCode.Space) && dashJump && !crouch && !isOnWall && !isOnGround || Input.GetKeyDown(KeyCode.Joystick1Button0) && dashJump && !crouch && !isOnWall && !isOnGround)
 
@@ -334,7 +334,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
 
-        // let the Player Jump  
+        // let the Player Jump ï¿½
 
         else if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !crouch && !isOnWall)
 
@@ -355,7 +355,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
 
-        //let the Player Dash 
+        //let the Player Dashï¿½
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && !crouch || Input.GetKeyDown(KeyCode.Joystick1Button4) && !crouch)
 
@@ -367,7 +367,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
 
-        // Sword atack 
+        // Sword atackï¿½
 
         if (Input.GetKeyDown(KeyCode.E) && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button2) && !crouch)
 
@@ -429,7 +429,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     {
 
-        // Check if the player is on hart surves and gives him the ability to jump again 
+        // Check if the player is on hart surves and gives him the ability to jump againï¿½
 
 
 
@@ -462,20 +462,19 @@ public class PlayerMovement2 : MonoBehaviour
 
         }
 
-
-
+        else if (collision.gameObject.CompareTag("AnimBox"))
+        {
+            Debug.Log("I'm touching");
+            anim.SetBool("isPushing", true);
+        }
     }
 
 
-    // check ob spieler an der wand ist 
+    // check ob spieler an der wand istï¿½
 
     private void OnCollisionExit(Collision collision)
 
     {
-
-
-
-
         if (collision.gameObject.CompareTag("Wall"))
 
         {
@@ -486,6 +485,12 @@ public class PlayerMovement2 : MonoBehaviour
             playerRb.useGravity = true;
 
         }
+        
+        else if (collision.gameObject.CompareTag("AnimBox"))
+        {
+            Debug.Log("I'm touching");
+            anim.SetBool("isPushing", false);
+        }
 
     }
 
@@ -493,7 +498,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
 
-    // void for the Dash Ability 
+    // void for the Dash Abilityï¿½
 
     void DashAbility()
 
@@ -509,7 +514,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     }
 
-    // Coroutine for the dash 
+    // Coroutine for the dashï¿½
 
     IEnumerator Dash()
 
@@ -532,7 +537,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         //leftLeg.enabled = false;
 
-        //smoke.Play(); 
+        //smoke.Play();ï¿½
 
         yield return new WaitForSeconds(0.05f);
 

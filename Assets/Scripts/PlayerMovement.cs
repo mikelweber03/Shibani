@@ -245,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
             //Animation Trigger
             //anim.SetBool("On")
 
-            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
+            transform.Translate(Vector3.right * (horizontalInput * Time.deltaTime * movementSpeed), Space.World);
 
             //inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World); 
 
@@ -414,8 +414,12 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("pickup");
 
         }
+        
+        
+        
 
     }
+    
 
 
 
@@ -423,12 +427,9 @@ public class PlayerMovement : MonoBehaviour
 
     {
 
-
-
-
-
         // Check if the player is on hart surves and gives him the ability to jump again 
 
+        Debug.Log("beep boop");
         if (collision.gameObject.CompareTag("Ground"))
 
         {
@@ -445,10 +446,12 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
+        
 
         else if (collision.gameObject.CompareTag("Wall") && !isOnGround)
 
         {
+            Debug.Log("I'm touching " + "Wall");
 
             isOnWall = true;
             anim.SetBool("IsGrounded_Wall", true);
@@ -458,6 +461,12 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+        }
+        
+        else if (collision.gameObject.CompareTag(StringCollection.ANIMBOX))
+        {
+            Debug.Log("I'm touching");
+            anim.SetBool("isPushing", true);
         }
 
 
@@ -469,7 +478,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionExit(Collision collision)
 
     {
-
         if (collision.gameObject.CompareTag("Wall"))
 
         {
@@ -480,7 +488,13 @@ public class PlayerMovement : MonoBehaviour
             playerRb.useGravity = true;
 
         }
-
+        
+        else if (collision.gameObject.CompareTag("AnimBox"))
+        {
+            Debug.Log("I'm touching");
+            anim.SetBool("isPushing", false);
+        }
+        
     }
 
 
