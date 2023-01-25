@@ -100,7 +100,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
-                deathmenu.ToggleEndMenu();
+                //deathmenu.ToggleEndMenu();
                 player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
             }
             canbedamaged = true;
