@@ -158,7 +158,7 @@ public class turret : MonoBehaviour
     {
         //animator.SetTrigger("OnEnemyFiring");
         Instantiate(bulletLeft, transform.position, transform.rotation);
-        Debug.Log("hilfe!");
+       // Debug.Log("hilfe!");
     }
 
     void ShootBullet()
