@@ -7121,6 +7121,10 @@ PrefabInstance:
       propertyPath: starBar
       value: 
       objectReference: {fileID: 805911130}
+    - target: {fileID: 3333887985485434056, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+      propertyPath: canThrow
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7777790188044410231, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
       propertyPath: m_RootOrder
       value: 0

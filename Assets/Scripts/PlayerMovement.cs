@@ -21,8 +21,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 inputVector;
 
 
+    [SerializeField]
+    [Header("Horizontal Movement")]
+    private float movementSpeed = 20f;
 
-    private float movementSpeed = 15f;
+    public float acceleration;
+
+    public float decceleration;
+
+    public float velPower;
 
     private float jumpForce = 26f;
 
@@ -30,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float verticalInput;
 
-    private float gravityModifier = 5f;
+    private float gravityModifier = 5;
 
 
 
@@ -76,7 +83,17 @@ public class PlayerMovement : MonoBehaviour
 
     private float dashJumpForce = 24f;
 
-    public SpriteRenderer nagatoSprite;
+    public SpriteRenderer haed;
+
+    public SpriteRenderer rightArm;
+
+    public SpriteRenderer body;
+
+    public SpriteRenderer leftArm;
+
+    public SpriteRenderer rightLeg;
+
+    public SpriteRenderer leftLeg;
 
     public SpriteRenderer cloud;
 
@@ -102,39 +119,60 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isOnWall = false;
 
-
-
     //private float wallJump; 
 
-    public bool grounded = true;
-
+    //public bool grounded = true;
 
     private float climping = 5f;
 
     [Header("Animation")]
 
-    public Animator anim;
-
-    private float playerVelocity;
+    Animator anim;
 
 
 
     void Start()
 
     {
+        haed = GetComponent<SpriteRenderer>();
 
         starAmont = 0;
 
         playerRb = GetComponent<Rigidbody>();
 
+        Physics.gravity = new Vector3(0f, -9.8f, 0f);
+
         Physics.gravity *= gravityModifier;
 
-        
+        Debug.Log(Physics.gravity);
+
+        starBar = FindObjectOfType<NinjaStarUI>();
+
+        //Connect Animator to Script
+        anim = GetComponentInChildren<Animator>();
+
     }
 
 
 
+    private void FixedUpdate()
+    {
+        if (!isOnWall && !dashBlock)  // grounded)
+        {
+            float targetSpeed = horizontalInput * movementSpeed;
 
+            float speedDif = targetSpeed - playerRb.velocity.x;
+
+            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+
+            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+
+            playerRb.AddForce(movement * Vector3.right);
+
+        }
+
+
+    }
 
     void Update()
 
@@ -146,13 +184,6 @@ public class PlayerMovement : MonoBehaviour
 
         verticalInput = Input.GetAxis("Vertical");
 
-        // Anim stats for Walking
-        if (horizontalInput != 0 || verticalInput != 0)
-        {
-            anim.SetFloat("MovementSpeed", 1);
-        }
-        else anim.SetFloat("MovementSpeed", 0);
-
 
 
         // let the Player shoot a Ninja Star 
@@ -160,11 +191,17 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar && !crouch)
 
         {
+
             NinjaStarAbility();
 
-
-
         }
+
+        // Anim stats for Walking
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            anim.SetFloat("MovementSpeed", 1);
+        }
+        else anim.SetFloat("MovementSpeed", 0);
 
 
 
@@ -184,28 +221,24 @@ public class PlayerMovement : MonoBehaviour
 
             playerRb.useGravity = false;
 
-            grounded = false;
+            //grounded = false;
 
             dashJump = false;
             anim.SetBool("CanDashJump", false);
 
-            transform.Translate(Vector3.up * (verticalInput * Time.deltaTime * climping));
+            transform.Translate(Vector3.up * verticalInput * Time.deltaTime * climping);
 
             if (isOnWall && Input.GetKeyDown(KeyCode.Space) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button0))
 
             {
 
+                //transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
+                playerRb.AddRelativeForce(-15, 25, 0, ForceMode.Impulse);
                 isOnWall = false;
                 anim.SetBool("IsGrounded_Wall", false);
                 anim.SetTrigger("OnWallJump");
 
                 playerRb.useGravity = true;
-
-                playerRb.AddRelativeForce(-10, 20, 0, ForceMode.Impulse);
-
-                transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
-
-
 
             }
 
@@ -221,12 +254,13 @@ public class PlayerMovement : MonoBehaviour
 
                 playerRb.useGravity = true;
 
+
                 playerRb.AddRelativeForce(-1, 3, 0, ForceMode.Impulse);
 
                 isOnWall = false;
                 anim.SetBool("IsGrounded_Wall", false);
 
-                grounded = true;
+                //grounded = true;
 
 
 
@@ -235,34 +269,6 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
-
-        // Player Movement HorizontalInput 
-
-        if (!isOnWall && grounded && !dashBlock)
-
-        {
-
-            //Animation Trigger
-            //anim.SetBool("On")
-
-            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
-
-            //inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World); 
-
-            //playerRb.velocity = inputVector;
-
-            //playerRb.AddForce(0f, 1f * horizontalInput * Time.deltaTime * movementSpeed, ((float)Space.World), ((float)ForceMode.Force));
-
-            //Debug.Log((float)Space.World); 
-
-            //Debug.Log((float)ForceMode.Force); 
-
-        }
-
-
-
-
-
         playerPosition = transform.position;
 
 
@@ -273,7 +279,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (horizontalInput < 0 && !isOnWall && grounded)
+        if (horizontalInput < 0 && !isOnWall) // && grounded)
 
         {
 
@@ -283,7 +289,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (horizontalInput > 0 && !isOnWall && grounded)
+        if (horizontalInput > 0 && !isOnWall) // && grounded)
 
         {
 
@@ -309,7 +315,7 @@ public class PlayerMovement : MonoBehaviour
 
             dashBlock = false;
 
-            grounded = true;
+            //grounded = true;
 
             isOnGround = false;
             anim.SetBool("IsGrounded_Ground", false);
@@ -334,7 +340,6 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !crouch && !isOnWall)
 
         {
-
             //AnimationTrigger
             anim.SetTrigger("OnBaseJump");
 
@@ -346,8 +351,6 @@ public class PlayerMovement : MonoBehaviour
 
             isOnGround = false;
             anim.SetBool("IsGrounded_Ground", false);
-
-
 
         }
 
@@ -377,20 +380,6 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-
-
-        //if (Input.GetKeyDown(KeyCode.M)) 
-
-        //{ 
-
-        //    SceneManager.LoadScene("LucianosWorkSpace"); 
-
-        //} 
-
-
-
-
-
     }
 
 
@@ -399,7 +388,7 @@ public class PlayerMovement : MonoBehaviour
 
     {
 
-        if (other.gameObject.CompareTag("StarPickUp"))
+        if (other.gameObject.CompareTag("StarPickUp") && other != null && starAmont < 3)
 
         {
 
@@ -415,19 +404,35 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-    }
+        if (other.gameObject.CompareTag("Latern"))
+        {
+            this.transform.parent = other.transform;
 
+            isOnGround = true;
+
+            dashJump = false;
+        }
+
+    }
+    private void OnTriggerExit(Collider collider)
+    {
+
+        if (collider.gameObject.CompareTag("Latern"))
+        {
+            transform.SetParent(null);
+            Debug.Log("geht das ?");
+        }
+
+    }
 
 
     private void OnCollisionEnter(Collision collision)
 
     {
 
-
-
-
-
         // Check if the player is on hart surves and gives him the ability to jump again 
+
+
 
         if (collision.gameObject.CompareTag("Ground"))
 
@@ -439,8 +444,7 @@ public class PlayerMovement : MonoBehaviour
             dashJump = false;
             anim.SetBool("CanDashJump", false);
 
-            grounded = true;
-
+            //grounded = true;
 
 
 
@@ -457,18 +461,21 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("CanDashJump", false);
 
 
-
         }
 
 
 
     }
 
+
     // check ob spieler an der wand ist 
 
     private void OnCollisionExit(Collision collision)
 
     {
+
+
+
 
         if (collision.gameObject.CompareTag("Wall"))
 
@@ -496,7 +503,6 @@ public class PlayerMovement : MonoBehaviour
         if (canDash)
 
         {
-            //Animation Trigger for SwordAttack
             anim.SetTrigger("OnDash");
             StartCoroutine(Dash());
 
@@ -515,7 +521,17 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;
         anim.SetBool("CanDash", false);
 
-        nagatoSprite.enabled = false;
+        //haed.enabled = false;
+
+        //rightArm.enabled = false;
+
+        //body.enabled = false;
+
+        //leftArm.enabled = false;
+
+        //rightLeg.enabled = false;
+
+        //leftLeg.enabled = false;
 
         //smoke.Play(); 
 
@@ -541,7 +557,17 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.05f);
 
-        nagatoSprite.enabled = true;
+        //haed.enabled = true;
+
+        //rightArm.enabled = true;
+
+        //body.enabled = true;
+
+        //leftArm.enabled = true;
+
+        //rightLeg.enabled = true;
+
+        //leftLeg.enabled = true;
 
         dashJump = true;
         anim.SetBool("CanDashJump", true);
@@ -549,8 +575,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         dashBlock = false;
-
-        grounded = true;
 
         playerRb.useGravity = true;
 
@@ -622,7 +646,13 @@ public class PlayerMovement : MonoBehaviour
             //Animation Trigger for SwordAttack
             anim.SetTrigger("OnCombat_Shuriken");
             StartCoroutine(NinjaStardAttack());
+
+
+
         }
+
+
+
     }
 
 
@@ -664,4 +694,9 @@ public class PlayerMovement : MonoBehaviour
         canThrow = true;
 
     }
+
+
+
+
+
 }

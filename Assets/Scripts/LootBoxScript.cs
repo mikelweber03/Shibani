@@ -49,7 +49,7 @@ public class LootBoxScript : MonoBehaviour
 
             //Debug.Log("healthSword");
 
-            //Boxhit.Play(); 
+            
 
             health--;
 
