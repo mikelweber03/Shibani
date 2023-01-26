@@ -19,7 +19,8 @@ public class pushButtonTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "LootBox")
+        //Lucianos code in if statement: other.gameObject.tag == "LootBox" 
+        if ( other.gameObject.tag == "Player")
         {
             Destroy(Door);
         }

@@ -11,13 +11,15 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     public int maxHealth = 3;
     private int currentHealth;
+    public bool canbedamaged = true;
+    
     public DeathMenu deathmenu;
     public CharacterBlink blink;
     public CheckHealth _healthBar;
-    public bool canbedamaged = true;
     public GameObject player;
     private PlayerKnockback knock;
     private VisualEffect playerHit;
+    [SerializeField] private Animator anim;
     void Start()
     {
         knock = GetComponent<PlayerKnockback>();
@@ -53,6 +55,7 @@ public class PlayerHealth : MonoBehaviour
                 //playerHit.Play();
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
+                //Debug.Log("Why");
 
             }
             else if (currentHealth == 1)
@@ -63,32 +66,42 @@ public class PlayerHealth : MonoBehaviour
                 deathmenu.ToggleEndMenu();
                 player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
+            if (other.CompareTag("DeathPlane"))
+            {
+                Debug.Log("Skurt");
+                currentHealth = 0;
+                _healthBar.ChangeHealth(currentHealth);
+            }
+            canbedamaged = true;
         }
     }
     //Check if player can loose health
     //if he can then make them loose one and update healthbar
     private void OnCollisionEnter(Collision collision)
     {
-        
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (currentHealth > 1 && CanBeDamaged() == true) 
+            if (currentHealth > 1 && CanBeDamaged() == true)
             {
                 currentHealth--;
                 knock.Knockback();
+                //Animation play
+                anim.SetTrigger("gotHit");
                 //playerHit.Play();
                 canbedamaged = false;
-                blink.tookDamage();
+                //blink.tookDamage();
+                //Debug.Log("why");
                 _healthBar.ChangeHealth(currentHealth);
-                return;
-                
+
+
             }
             else if (currentHealth == 1)
             {
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
-                deathmenu.ToggleEndMenu();
-                player.GetComponent("PlayerMovement").gameObject.SetActive(false);
+                //deathmenu.ToggleEndMenu();
+                player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
             }
             canbedamaged = true;
         }
@@ -108,8 +121,9 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 0;
             _healthBar.ChangeHealth(currentHealth);
             deathmenu.ToggleEndMenu();
-            player.GetComponent("PlayerMovement").gameObject.SetActive(false);
+            player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
         }
+        
     }
 
  

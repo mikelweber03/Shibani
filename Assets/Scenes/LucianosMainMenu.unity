@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.1853, g: 324.85815, b: 429.9668, a: 1}
+  m_IndirectSpecularColor: {r: 262.05304, g: 324.6715, b: 429.7248, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1755,8 +1755,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Controls\n\nJumping / double jump \t- Space\n\nDash\t\t\t\t\t- Left Shift\n\nSword
-    Attack\t\t\t- E\n\nNinjastar Attack\t\t\t- Q\n\ncrouch\t\t\t\t- S\n\n"
+  m_text: "Controls\n\nJumping                     \t- Space\n\nDash\t\t\t\t\t- Left
+    Shift\n\nSword Attack\t\t\t- E\n\nNinjastar Attack\t\t\t- Q\n\nMove Left/Right                
+    -A/D\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

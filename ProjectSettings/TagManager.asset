@@ -24,6 +24,8 @@ TagManager:
   - NagatoSprite
   - Latern
   - Star0
+  - Global Volume
+  - AnimBox
   layers:
   - Default
   - TransparentFX

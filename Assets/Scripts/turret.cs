@@ -9,7 +9,7 @@ public class turret : MonoBehaviour
 
     private CharacterController player;
     AnimationController anim;
-    Animator animator;
+    public Animator animator;
 
     SphereCollider Awareness;
 
@@ -24,22 +24,38 @@ public class turret : MonoBehaviour
 
     public int maxHealth;
 
+    public Transform target; //where we want to shoot(player? mouse?)
+    public Transform weaponMuzzle; //The empty game object which will be our weapon muzzle to shoot from
+    public GameObject bullet; //Your set-up prefab
+    public float fireRate = 3000f; //Fire every 3 seconds
+    public float shootingPower = 20f; //force of projection
+
+
+    private float shootingTime; //local to store last time we shot so we can make sure its done every 3s
+
+    public int health = 100;
+    //public GameObject deathEffect;
+
+
+
+    //private float position;
+    //private Transform positionPlayer;
+
     private int count = 0;
     private Vector3 start;
-    private VisualEffect enemyHit;
-    private VisualEffect enemyDeath;
+    public VisualEffect enemyHit;
+    public VisualEffect enemyDeath;
     private AnimationEvent TurretHitEvent;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        //InvokeRepeating("CatBulletLeft", 1, 3);
+        InvokeRepeating("TurretFire", 1, 3);
         anim = turret.FindObjectOfType<AnimationController>();
-        animator = gameObject.GetComponent<Animator>();
         Awareness = gameObject.GetComponentInChildren<SphereCollider>();
-        enemyHit = GetComponentInChildren<VisualEffect>();
-        enemyDeath = GetComponentInChildren<VisualEffect>();
+        
+        //position = this.transform.position.x;
     }
 
     // Update is called once per frame
@@ -47,22 +63,35 @@ public class turret : MonoBehaviour
     {
         CheckPlayerDistance();
         GotHit();
-        ShootBullet();
+        //ShootBullet();
         if (bisFiring)
         {
-            //TurretFire();
+            Fire();
         }
-     }
+    }
+
+
+    private void Fire()
+    {
+        if (Time.time > shootingTime)
+        {
+            shootingTime = Time.time + fireRate / 1000; //set the local var. to current time of shooting
+            Vector2 myPos = new Vector2(weaponMuzzle.position.x, weaponMuzzle.position.y); //our curr position is where our muzzle points
+            GameObject projectile = Instantiate(bullet, myPos, Quaternion.identity); //create our bullet
+            Vector2 direction = myPos - (Vector2)target.position; //get the direction to the target
+            projectile.GetComponent<Rigidbody2D>().velocity = direction * shootingPower; //shoot the bullet
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Sword")
+        if (other.gameObject.CompareTag("Sword"))
         {
             //Destroy(this.gameObject);
             bgotHit = true;
             TakeDamage();
         }
-        if (other.gameObject.tag == "NinjaStern")
+        if (other.gameObject.CompareTag("NinjaStern"))
         {
             Destroy(other.gameObject);
             bgotHit = true;
@@ -102,8 +131,7 @@ public class turret : MonoBehaviour
         if (bisDead)
         {
             animator.SetTrigger("OnEnemyDeath");
-            Destroy(this.gameObject, 15f);
-            VisualEffect.Instantiate(enemyDeath);
+            StartCoroutine(Waiter());           
         }
     }
 
@@ -118,6 +146,7 @@ public class turret : MonoBehaviour
         }
         else
             count++;
+        VisualEffect.Instantiate(enemyHit);
     }
 
     void playVFX()
@@ -127,8 +156,9 @@ public class turret : MonoBehaviour
 
     void TurretFire()
     {
-        animator.SetTrigger("OnEnemyFiring");
-        Instantiate(bulletLeft);
+        //animator.SetTrigger("OnEnemyFiring");
+        Instantiate(bulletLeft, transform.position, transform.rotation);
+       // Debug.Log("hilfe!");
     }
 
     void ShootBullet()
@@ -139,6 +169,13 @@ public class turret : MonoBehaviour
             TurretFire();
             bisFiring = false;
         }
+    }
+
+    IEnumerator Waiter()
+    {
+        VisualEffect.Instantiate(enemyDeath);
+        yield return new WaitForSeconds(3);
+        Destroy(this.gameObject, 15f);
     }
 
 
