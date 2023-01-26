@@ -6,10 +6,16 @@ public class PlayerMovement2 : MonoBehaviour
 {
 
     public bool gameOver = false;
-
+    [Header("Jumping")]
     public bool isOnGround = true;
-
-    public bool crouch = false;
+    public float lastGroundedTime;
+    public float lastJumpTime;
+    public bool  isJumping;
+    public bool  jumpInputReleased;
+    public float jumpcutMultiplier;
+    public float fallinggravity = 10;
+    Vector3 gravityNormal;
+    Vector3 gravityFalling;
 
 
 
@@ -68,7 +74,8 @@ public class PlayerMovement2 : MonoBehaviour
 
     public bool gotStar;
 
-    public bool canThrow;
+    [SerializeField]
+    private bool canThrow = true;
 
     public float throwTime;
 
@@ -138,10 +145,10 @@ public class PlayerMovement2 : MonoBehaviour
         starAmont = 0;
 
         playerRb = GetComponent<Rigidbody>();
+        gravityNormal = new Vector3(0f, -9.8f, 0f) * gravityModifier;
+        gravityFalling = new Vector3(0f, -9.8f, 0f) * fallinggravity;
 
-        Physics.gravity = new Vector3(0f, -9.8f, 0f);
-
-        Physics.gravity *= gravityModifier;
+        Physics.gravity = gravityNormal;
 
        // Debug.Log(Physics.gravity);
 
@@ -156,7 +163,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isOnWall && !dashBlock)  // grounded)
+        if (!isOnWall && !dashBlock) 
         {
             float targetSpeed = horizontalInput * movementSpeed;
 
@@ -187,12 +194,12 @@ public class PlayerMovement2 : MonoBehaviour
 
         // let the Player shoot a Ninja Star�
 
-        if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar && !crouch)
+        if (Input.GetKeyDown(KeyCode.Q) && !isOnWall  && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar)
 
         {
 
             NinjaStarAbility();
-
+            Debug.Log("sternwurf");
         }
 
         // Anim stats for Walking
@@ -213,7 +220,7 @@ public class PlayerMovement2 : MonoBehaviour
         if (isOnWall)
 
         {
-
+            Physics.gravity = gravityNormal;
             playerRb.velocity = Vector3.zero;
 
             playerRb.angularVelocity = Vector3.zero;
@@ -223,7 +230,10 @@ public class PlayerMovement2 : MonoBehaviour
             //grounded = false;
 
             dashJump = false;
+            
             anim.SetBool("CanDashJump", false);
+
+            canThrow = false;
 
             transform.Translate(Vector3.up * verticalInput * Time.deltaTime * climping);
 
@@ -238,6 +248,7 @@ public class PlayerMovement2 : MonoBehaviour
                 anim.SetTrigger("OnWallJump");
 
                 playerRb.useGravity = true;
+                canThrow = true;
 
             }
 
@@ -257,6 +268,7 @@ public class PlayerMovement2 : MonoBehaviour
                 playerRb.AddRelativeForce(-1, 3, 0, ForceMode.Impulse);
 
                 isOnWall = false;
+                canThrow = true;
                 anim.SetBool("IsGrounded_Wall", false);
 
                 //grounded = true;
@@ -304,11 +316,11 @@ public class PlayerMovement2 : MonoBehaviour
 
         // sprung nach dem dash�
 
-        if (Input.GetKeyDown(KeyCode.Space) && dashJump && !crouch && !isOnWall && !isOnGround || Input.GetKeyDown(KeyCode.Joystick1Button0) && dashJump && !crouch && !isOnWall && !isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && dashJump && !isOnWall && !isOnGround || Input.GetKeyDown(KeyCode.Joystick1Button0) && dashJump && !isOnWall && !isOnGround)
 
         {
-
-
+            
+            Physics.gravity = gravityNormal;
 
             playerRb.useGravity = true;
 
@@ -336,7 +348,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         // let the Player Jump �
 
-        else if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !crouch && !isOnWall)
+        else if (Input.GetKeyDown(KeyCode.Space) && isOnGround  && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !isOnWall)
 
         {
             //AnimationTrigger
@@ -347,17 +359,24 @@ public class PlayerMovement2 : MonoBehaviour
             playerRb.angularVelocity = Vector3.zero;
 
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            lastGroundedTime = 0;
+            lastJumpTime = 0;
+            isJumping = true;
+            jumpInputReleased = false;
 
             isOnGround = false;
             anim.SetBool("IsGrounded_Ground", false);
-
+            
         }
-
+        if (Input.GetKeyUp(KeyCode.Space) && !isOnGround && !isOnWall)
+        {
+            Physics.gravity = gravityFalling;
+        }
 
 
         //let the Player Dash�
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !crouch || Input.GetKeyDown(KeyCode.Joystick1Button4) && !crouch)
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Joystick1Button4))
 
         {
 
@@ -369,19 +388,15 @@ public class PlayerMovement2 : MonoBehaviour
 
         // Sword atack�
 
-        if (Input.GetKeyDown(KeyCode.E) && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button2) && !crouch)
+        if (Input.GetKeyDown(KeyCode.E) && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button2))
 
         {
-
             SwordAbility();
-
-
-
         }
 
     }
 
-
+    
 
     private void OnTriggerEnter(Collider other)
 
@@ -399,7 +414,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             starBar.ChangeStar(starAmont);
 
-            // Debug.Log("pickup");
+             Debug.Log("pickup");
 
         }
 
@@ -438,6 +453,7 @@ public class PlayerMovement2 : MonoBehaviour
         {
 
             isOnGround = true;
+            Physics.gravity = gravityNormal;
             anim.SetBool("IsGrounded_Ground", true);
 
             dashJump = false;
@@ -454,6 +470,7 @@ public class PlayerMovement2 : MonoBehaviour
         {
 
             isOnWall = true;
+            Physics.gravity = gravityNormal;
             anim.SetBool("IsGrounded_Wall", true);
 
             dashJump = false;
@@ -508,6 +525,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         {
             anim.SetTrigger("OnDash");
+            Physics.gravity = gravityNormal;
             StartCoroutine(Dash());
 
         }
@@ -581,6 +599,7 @@ public class PlayerMovement2 : MonoBehaviour
         dashBlock = false;
 
         playerRb.useGravity = true;
+        Physics.gravity = gravityFalling;
 
         yield return new WaitForSeconds(timeBtweDashes);
 
@@ -648,9 +667,9 @@ public class PlayerMovement2 : MonoBehaviour
 
         {
             //Animation Trigger for SwordAttack
-            anim.SetTrigger("OnCombat_Shuriken");
+            //anim.SetTrigger("OnCombat_Shuriken");
             StartCoroutine(NinjaStardAttack());
-
+            Debug.Log("start ninjastar");
 
 
         }
@@ -675,7 +694,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             gotStar = true;
 
-            //Debug.Log("gotstar");
+            Debug.Log("gotstar");
 
         }
 
@@ -685,7 +704,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             gotStar = false;
 
-            //Debug.Log("nostar");
+            Debug.Log("nostar");
 
         }
 
