@@ -6997,6 +6997,14 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 613026691}
+    - target: {fileID: 2245452350420030628, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1023313
+      objectReference: {fileID: 0}
+    - target: {fileID: 2245452350420030628, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+      propertyPath: m_Center.x
+      value: 0.051165562
+      objectReference: {fileID: 0}
     - target: {fileID: 3333887985485434056, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
       propertyPath: starBar
       value: 
