@@ -51,7 +51,7 @@ public class turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //InvokeRepeating("CatBulletLeft", 1, 3);
+        InvokeRepeating("TurretFire", 1, 3);
         anim = turret.FindObjectOfType<AnimationController>();
         Awareness = gameObject.GetComponentInChildren<SphereCollider>();
         
@@ -156,8 +156,9 @@ public class turret : MonoBehaviour
 
     void TurretFire()
     {
-        animator.SetTrigger("OnEnemyFiring");
-        Instantiate(bulletLeft);
+        //animator.SetTrigger("OnEnemyFiring");
+        Instantiate(bulletLeft, transform.position, transform.rotation);
+       // Debug.Log("hilfe!");
     }
 
     void ShootBullet()
