@@ -3914,9 +3914,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 2998
-      y: 4
-      width: 5338
-      height: 3367
+      y: 38
+      width: 5158
+      height: 3379
     spriteID: eeb8bf981ce9859478c218125a999514
     spriteBone:
     - name: bone_1
@@ -4867,9 +4867,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 6661
-      y: 4
-      width: 1556
-      height: 2926
+      y: 21
+      width: 1517
+      height: 2909
     spriteID: f05db3b17ee2a964f86f1a788af9c9c5
     spriteBone:
     - name: bone_5
@@ -5965,9 +5965,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 18
       y: 10576
-      width: 1556
+      width: 1542
       height: 2926
     spriteID: 45e891e035c381743afad5e0e9d77860
     spriteBone:
