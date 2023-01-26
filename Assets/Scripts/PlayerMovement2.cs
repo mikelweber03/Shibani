@@ -10,7 +10,9 @@ public class PlayerMovement2 : MonoBehaviour
     public bool isOnGround = true;
     public float lastGroundedTime;
     public float lastJumpTime;
+    public float dustTime;
     public bool  isJumping;
+    public bool hasFlipped;
     public bool  jumpInputReleased;
     public float jumpcutMultiplier;
     public float fallinggravity = 10;
@@ -43,6 +45,9 @@ public class PlayerMovement2 : MonoBehaviour
     private float verticalInput;
 
     private float gravityModifier = 5;
+
+    public bool facingRight = true;
+    public float directionValue;
 
 
 
@@ -134,8 +139,10 @@ public class PlayerMovement2 : MonoBehaviour
     [Header("Animation")]
 
     Animator anim;
+    public ParticleSystem DustWalk;
+    public ParticleSystem DustJump;
 
-
+    public bool dusting = false;
 
     void Start()
 
@@ -156,6 +163,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         //Connect Animator to Script
         anim = GetComponentInChildren<Animator>();
+        dusting = false;
 
     }
 
@@ -178,6 +186,33 @@ public class PlayerMovement2 : MonoBehaviour
         }
 
 
+        if (horizontalInput < 0 && !isOnWall && !facingRight) // && grounded)
+
+        {
+            directionValue = -1;
+            FlipPlayer(directionValue);
+        }
+        else if (horizontalInput > 0 && !isOnWall && facingRight) // && grounded)
+
+        {
+            directionValue = 1;
+            FlipPlayer(directionValue);
+        }
+
+    }
+
+    void CreateDust()
+    {
+        DustWalk.Play();
+    }
+
+    void FlipPlayer(float directionValue)
+    {
+        Quaternion currentRotation = this.transform.rotation;
+        currentRotation.y = Mathf.Acos(directionValue) * Mathf.Rad2Deg;
+        this.transform.rotation = currentRotation;
+        facingRight = !facingRight;
+        CreateDust();
     }
 
     void Update()
@@ -206,8 +241,10 @@ public class PlayerMovement2 : MonoBehaviour
         if (horizontalInput != 0 || verticalInput != 0)
         {
             anim.SetFloat("MovementSpeed", 1);
+            dusting = true;
         }
-        else anim.SetFloat("MovementSpeed", 0);
+        else anim.SetFloat("MovementSpeed", 0); dusting = false;
+        
 
 
 
@@ -288,30 +325,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         // flipp the player sprite�
 
-
-
-        if (horizontalInput < 0 && !isOnWall) // && grounded)
-
-        {
-
-            this.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-
-        }
-
-
-
-        if (horizontalInput > 0 && !isOnWall) // && grounded)
-
-        {
-
-            this.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
-
-
-
-        }
-
-
-
+        
 
 
         // sprung nach dem dash�
@@ -366,6 +380,8 @@ public class PlayerMovement2 : MonoBehaviour
 
             isOnGround = false;
             anim.SetBool("IsGrounded_Ground", false);
+            dusting = false;
+            DustJump.Play();
             
         }
         if (Input.GetKeyUp(KeyCode.Space) && !isOnGround && !isOnWall)
@@ -717,7 +733,6 @@ public class PlayerMovement2 : MonoBehaviour
         canThrow = true;
 
     }
-
 
 
 
