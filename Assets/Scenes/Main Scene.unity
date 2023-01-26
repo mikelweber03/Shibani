@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.1853, g: 324.85815, b: 429.9668, a: 1}
+  m_IndirectSpecularColor: {r: 262.05304, g: 324.6715, b: 429.7248, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3862,51 +3862,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57100a9ce55d2474087e2cf6bc8dabae, type: 3}
---- !u!1 &1155814284
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1155814285}
-  - component: {fileID: 1155814286}
-  m_Layer: 0
-  m_Name: Deathplane
-  m_TagString: DeathPlane
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1155814285
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155814284}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -77.6, y: -122, z: 0}
-  m_LocalScale: {x: 1.09, y: 1.09, z: 1.09}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1712657342}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1155814286
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155814284}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 600, y: 1, z: 200}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1206515665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6000,38 +5955,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699617134}
   m_CullTransparentMesh: 1
---- !u!1 &1712657341
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1712657342}
-  m_Layer: 0
-  m_Name: DeathPlane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1712657342
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712657341}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 227.05354, y: 100.494156, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1155814285}
-  m_Father: {fileID: 0}
-  m_RootOrder: 53
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1787395399
 GameObject:
   m_ObjectHideFlags: 0
@@ -6412,10 +6335,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4785892311207974595, guid: 96a1cc1ed87514a498c835eb146ee4b8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2279215661402844119, guid: 6b36b734523882a43b4966a6c2ce4c2a, type: 3}
     - target: {fileID: 5410573000927539283, guid: 96a1cc1ed87514a498c835eb146ee4b8, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5474813972387493254, guid: 96a1cc1ed87514a498c835eb146ee4b8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2279215661402844119, guid: 6b36b734523882a43b4966a6c2ce4c2a, type: 3}
     - target: {fileID: 5544486006206884422, guid: 96a1cc1ed87514a498c835eb146ee4b8, type: 3}
       propertyPath: m_Name
       value: CAT_Enemy (1)
@@ -7453,6 +7384,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4785892311207974595, guid: 96a1cc1ed87514a498c835eb146ee4b8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2279215661402844119, guid: 6b36b734523882a43b4966a6c2ce4c2a, type: 3}
     - target: {fileID: 5094346989210150940, guid: 96a1cc1ed87514a498c835eb146ee4b8, type: 3}
       propertyPath: m_BoneTransforms.Array.size
       value: 3
@@ -7480,7 +7415,7 @@ PrefabInstance:
     - target: {fileID: 5474813972387493254, guid: 96a1cc1ed87514a498c835eb146ee4b8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6137254596113633648, guid: 55ebc2fe540220b46a7cb87e5c84c9f5, type: 3}
+      objectReference: {fileID: -2279215661402844119, guid: 6b36b734523882a43b4966a6c2ce4c2a, type: 3}
     - target: {fileID: 5474813972387493254, guid: 96a1cc1ed87514a498c835eb146ee4b8, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
