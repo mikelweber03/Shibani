@@ -196,7 +196,7 @@ MonoBehaviour:
   - {fileID: 432368076333462874}
   - {fileID: 8071437983173357038}
   m_Bounds:
-    m_Center: {x: -1.5397797, y: -14.258493, z: 0}
+    m_Center: {x: -1.5397797, y: -14.258471, z: 0}
     m_Extent: {x: 8.700163, y: 7.038483, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -303,8 +303,8 @@ MonoBehaviour:
   - {fileID: 6631462716680926697}
   - {fileID: 8071437983173357038}
   m_Bounds:
-    m_Center: {x: 6.158184, y: -14.170082, z: 0}
-    m_Extent: {x: 8.841764, y: 7.119924, z: 0}
+    m_Center: {x: 6.158184, y: -14.170086, z: 0}
+    m_Extent: {x: 8.841764, y: 7.1199245, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -422,7 +422,7 @@ SpriteRenderer:
   m_Size: {x: 15.17, y: 29.09}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &5094346989210150940
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5827657206208818067}
   m_Bounds:
-    m_Center: {x: 0.54809856, y: 0.033686638, z: 0}
+    m_Center: {x: 0.54809856, y: 0.033665657, z: 0}
     m_Extent: {x: 15.511843, y: 10.3325615, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -730,7 +730,7 @@ SpriteRenderer:
   m_Size: {x: 51.58, y: 33.79}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3619642664552615158
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5827657206208818067}
   m_Bounds:
-    m_Center: {x: -0.94006157, y: 0.00000667572, z: 0}
+    m_Center: {x: -0.94000053, y: -0.0000009536743, z: 0}
     m_Extent: {x: 10.960001, y: 10.160001, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1205,7 +1205,7 @@ MonoBehaviour:
   - {fileID: 7590871160811210661}
   - {fileID: 2784336493364027943}
   m_Bounds:
-    m_Center: {x: 3.0182822, y: 0.008963585, z: 0}
+    m_Center: {x: 3.0182822, y: 0.0089588165, z: 0}
     m_Extent: {x: 4.8535614, y: 14.623518, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

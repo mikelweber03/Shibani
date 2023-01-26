@@ -527,10 +527,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1776282551, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 1535514810}
-    - target: {fileID: 1776282551, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 368866418}
@@ -582,8 +578,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nagato
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1716691789, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
 --- !u!1 &210897436
 GameObject:
@@ -4575,16 +4570,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1535514810 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2099252757, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
-  m_PrefabInstance: {fileID: 167639091}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1536431388 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7777790188044410233, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
-  m_PrefabInstance: {fileID: 167639091}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1556907137
 GameObject:
   m_ObjectHideFlags: 0
@@ -5077,19 +5062,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7777790188044410231, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
   m_PrefabInstance: {fileID: 167639091}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &1716691797
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536431388}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1726848573
 GameObject:
   m_ObjectHideFlags: 0
@@ -5789,10 +5761,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5410573000927539285, guid: 96a1cc1ed87514a498c835eb146ee4b8, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5544486006206884422, guid: 96a1cc1ed87514a498c835eb146ee4b8, type: 3}
       propertyPath: m_Name
       value: CAT_Enemy
