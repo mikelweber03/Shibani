@@ -11,13 +11,15 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     public int maxHealth = 3;
     private int currentHealth;
+    public bool canbedamaged = true;
+    
     public DeathMenu deathmenu;
     public CharacterBlink blink;
     public CheckHealth _healthBar;
-    public bool canbedamaged = true;
     public GameObject player;
     private PlayerKnockback knock;
     private VisualEffect playerHit;
+    [SerializeField] private Animator anim;
     void Start()
     {
         knock = GetComponent<PlayerKnockback>();
@@ -84,6 +86,8 @@ public class PlayerHealth : MonoBehaviour
             {
                 currentHealth--;
                 knock.Knockback();
+                //Animation play
+                anim.SetTrigger("gotHit");
                 //playerHit.Play();
                 canbedamaged = false;
                 //blink.tookDamage();
@@ -96,7 +100,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
-                deathmenu.ToggleEndMenu();
+                //deathmenu.ToggleEndMenu();
                 player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
             }
             canbedamaged = true;
