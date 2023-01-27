@@ -196,8 +196,8 @@ MonoBehaviour:
   - {fileID: 432368076333462874}
   - {fileID: 8071437983173357038}
   m_Bounds:
-    m_Center: {x: -1.5397797, y: -14.258471, z: 0}
-    m_Extent: {x: 8.700163, y: 7.038483, z: 0}
+    m_Center: {x: -1.5398331, y: -14.258492, z: 0}
+    m_Extent: {x: 8.700163, y: 7.0384836, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -303,7 +303,7 @@ MonoBehaviour:
   - {fileID: 6631462716680926697}
   - {fileID: 8071437983173357038}
   m_Bounds:
-    m_Center: {x: 6.158184, y: -14.170086, z: 0}
+    m_Center: {x: 6.1582375, y: -14.170086, z: 0}
     m_Extent: {x: 8.841764, y: 7.1199245, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -422,7 +422,7 @@ SpriteRenderer:
   m_Size: {x: 15.17, y: 29.09}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &5094346989210150940
@@ -443,8 +443,8 @@ MonoBehaviour:
   - {fileID: 8767982795666919496}
   - {fileID: 5711905214532857449}
   m_Bounds:
-    m_Center: {x: -2.9236608, y: 0.015207291, z: 0}
-    m_Extent: {x: 4.836401, y: 14.635195, z: 0}
+    m_Center: {x: -2.9236193, y: 0.015195847, z: 0}
+    m_Extent: {x: 4.836397, y: 14.635202, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5827657206208818067}
   m_Bounds:
-    m_Center: {x: 0.54809856, y: 0.033665657, z: 0}
+    m_Center: {x: 0.5481596, y: 0.03367901, z: 0}
     m_Extent: {x: 15.511843, y: 10.3325615, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -730,7 +730,7 @@ SpriteRenderer:
   m_Size: {x: 51.58, y: 33.79}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3619642664552615158
@@ -752,8 +752,8 @@ MonoBehaviour:
   - {fileID: 5827657206208818067}
   - {fileID: 432368076333462874}
   m_Bounds:
-    m_Center: {x: 0.837801, y: -5.959998, z: 0}
-    m_Extent: {x: 25.9222, y: 10.879998, z: 0}
+    m_Center: {x: 0.8378029, y: -5.96, z: 0}
+    m_Extent: {x: 25.922197, y: 10.879996, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -812,8 +812,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 52.1, y: 48.6, z: 14.96}
-  m_Center: {x: 0, y: 23.5, z: 0}
+  m_Size: {x: 51.7971, y: 48.6, z: 14.959999}
+  m_Center: {x: -0.15144859, y: 23.5, z: 0}
 --- !u!73398921 &5410573000927539286
 VFXRenderer:
   serializedVersion: 1
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5827657206208818067}
   m_Bounds:
-    m_Center: {x: -0.94000053, y: -0.0000009536743, z: 0}
+    m_Center: {x: -0.9399929, y: -0.0000009536743, z: 0}
     m_Extent: {x: 10.960001, y: 10.160001, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1205,8 +1205,8 @@ MonoBehaviour:
   - {fileID: 7590871160811210661}
   - {fileID: 2784336493364027943}
   m_Bounds:
-    m_Center: {x: 3.0182822, y: 0.0089588165, z: 0}
-    m_Extent: {x: 4.8535614, y: 14.623518, z: 0}
+    m_Center: {x: 3.0935616, y: -0.0064821243, z: 0}
+    m_Extent: {x: 4.8535585, y: 14.623522, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
