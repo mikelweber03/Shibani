@@ -245,4 +245,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Boxhit: {fileID: 0}
   crate_Des: {fileID: 7399602019115740762, guid: 06f99b78e2c577b409529593aa7d7248, type: 3}
+  starPickUp: {fileID: 4585312450681017159, guid: ae32270169e7ad4459ea836409c0c0ee, type: 3}
   boxMaterial: {fileID: 2100000, guid: ad3051bba7b5dbb4eb58c0aedf4101df, type: 2}
