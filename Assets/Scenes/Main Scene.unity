@@ -5048,6 +5048,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3840883067729268608, guid: f13ce7df8ee986e4784ab6dd93990cb3, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4009743180269460370, guid: f13ce7df8ee986e4784ab6dd93990cb3, type: 3}
       propertyPath: m_Name
       value: Ground_Floor (2)
@@ -7958,6 +7962,30 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -31.21
       objectReference: {fileID: 0}
+    - target: {fileID: 906177942130381909, guid: 6d0211b2069f943418eec15efbd75b81, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 906177942130381915, guid: 6d0211b2069f943418eec15efbd75b81, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 906177942207269511, guid: 6d0211b2069f943418eec15efbd75b81, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 906177942207269513, guid: 6d0211b2069f943418eec15efbd75b81, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 906177943904260064, guid: 6d0211b2069f943418eec15efbd75b81, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 906177944056222012, guid: 6d0211b2069f943418eec15efbd75b81, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 959526300942834573, guid: 6d0211b2069f943418eec15efbd75b81, type: 3}
       propertyPath: m_Name
       value: DioramaLVLAssets
@@ -8029,6 +8057,10 @@ PrefabInstance:
     - target: {fileID: 3818459534993689519, guid: 6d0211b2069f943418eec15efbd75b81, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928844530557695365, guid: 6d0211b2069f943418eec15efbd75b81, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5928844530997430773, guid: 6d0211b2069f943418eec15efbd75b81, type: 3}
       propertyPath: m_StaticEditorFlags
