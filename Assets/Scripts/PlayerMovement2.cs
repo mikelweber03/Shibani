@@ -362,7 +362,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         // let the Player Jump �
 
-        else if (Input.GetKeyDown(KeyCode.Space) && isOnGround  && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !isOnWall)
+        else if (Input.GetKeyDown(KeyCode.Space) && isOnGround  && !isOnWall || Input.GetButtonDown("Jump") && isOnGround && !isOnWall)
 
         {
             //AnimationTrigger
@@ -384,7 +384,7 @@ public class PlayerMovement2 : MonoBehaviour
             DustJump.Play();
             
         }
-        if (Input.GetKeyUp(KeyCode.Space) && !isOnGround && !isOnWall)
+        if (Input.GetKeyUp(KeyCode.Space) && !isOnGround && !isOnWall || Input.GetButtonUp("Jump") && !isOnGround && !isOnWall)
         {
             Physics.gravity = gravityFalling;
         }
