@@ -5986,9 +5986,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 18
+      x: 4
       y: 10576
-      width: 1542
+      width: 1556
       height: 2926
     spriteID: 45e891e035c381743afad5e0e9d77860
     spriteBone:
@@ -7236,8 +7236,8 @@ ScriptedImporter:
     - spritePosition:
         x: 654
         y: 897
-        width: 5158
-        height: 3379
+        width: 5338
+        height: 3367
       spriteId: eeb8bf981ce9859478c218125a999514
       bones: 00000000090000000100000008000000
       parentGroup: 0
@@ -7245,8 +7245,8 @@ ScriptedImporter:
     - spritePosition:
         x: 4150
         y: 123
-        width: 1517
-        height: 2909
+        width: 1556
+        height: 2926
       spriteId: f05db3b17ee2a964f86f1a788af9c9c5
       bones: 040000000300000002000000
       parentGroup: 0
@@ -7254,7 +7254,7 @@ ScriptedImporter:
     - spritePosition:
         x: 56
         y: 123
-        width: 1542
+        width: 1556
         height: 2926
       spriteId: 45e891e035c381743afad5e0e9d77860
       bones: 070000000600000005000000
