@@ -27,6 +27,10 @@ public class PlayerMovement2 : MonoBehaviour
 
     private Vector3 inputVector;
 
+    private bool wallRight;
+    private bool wallLeft;
+    private bool correctWallSide;
+
 
     [SerializeField]
     [Header("Horizontal Movement")]
@@ -46,8 +50,9 @@ public class PlayerMovement2 : MonoBehaviour
 
     private float gravityModifier = 5;
 
-    public bool facingRight = true;
-    public float directionValue;
+    private bool facingRight = true;
+    private float directionValue;
+    private bool canFlip;
 
 
 
@@ -144,6 +149,8 @@ public class PlayerMovement2 : MonoBehaviour
 
     public bool dusting = false;
 
+    private float targetSpeed;
+
     void Start()
 
     {
@@ -171,9 +178,16 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        
         if (!isOnWall && !dashBlock) 
         {
-            float targetSpeed = horizontalInput * movementSpeed;
+            
+            //if (Mathf.Abs(horizontalInput) <= deadZonePos || Mathf.Abs(horizontalInput) >= deadZoneNeg)
+            //{
+            //    horizontalInput = 0;
+            //}
+            targetSpeed = horizontalInput * movementSpeed;
 
             float speedDif = targetSpeed - playerRb.velocity.x;
 
@@ -185,18 +199,46 @@ public class PlayerMovement2 : MonoBehaviour
 
         }
 
+        
 
-        if (horizontalInput < 0 && !isOnWall && !facingRight) // && grounded)
+        if (horizontalInput < 0 && !isOnWall && facingRight ) // && grounded)
 
         {
+            canFlip = true;
             directionValue = -1;
             FlipPlayer(directionValue);
         }
-        else if (horizontalInput > 0 && !isOnWall && facingRight) // && grounded)
+        else if (horizontalInput > 0 && !isOnWall && !facingRight ) // && grounded)
 
         {
+            canFlip = true;
             directionValue = 1;
             FlipPlayer(directionValue);
+        }
+        else if (isOnWall && wallRight && !facingRight)
+        {
+            canFlip = true;
+            directionValue = 1;
+            FlipPlayer(directionValue);
+
+        } 
+        else if (isOnWall && wallLeft && facingRight)
+        {
+            canFlip = true;
+            directionValue = -1;
+            FlipPlayer(directionValue);
+        }
+
+        if (wallLeft && !facingRight && isOnWall)
+        {
+            canFlip = false;
+            correctWallSide = true;
+        }
+
+        if (wallRight && facingRight && isOnWall)
+        {
+            canFlip = false;
+            correctWallSide = true;
         }
 
     }
@@ -208,24 +250,31 @@ public class PlayerMovement2 : MonoBehaviour
 
     void FlipPlayer(float directionValue)
     {
-        Quaternion currentRotation = this.transform.rotation;
-        currentRotation.y = Mathf.Acos(directionValue) * Mathf.Rad2Deg;
-        this.transform.rotation = currentRotation;
-        facingRight = !facingRight;
-        CreateDust();
+        if (canFlip)
+        {
+            Quaternion currentRotation = this.transform.rotation;
+            currentRotation.y = Mathf.Acos(directionValue) * Mathf.Rad2Deg;
+            this.transform.rotation = currentRotation;
+            facingRight = !facingRight;
+            if (isOnGround)
+            {
+                CreateDust();
+            }
+            
+        }
     }
 
     void Update()
 
     {
-
+        Debug.Log(horizontalInput);
         // eingabe f�r die bewegung in wertikalerweise �
 
         horizontalInput = Input.GetAxis("Horizontal");
 
         verticalInput = Input.GetAxis("Vertical");
 
-
+        
 
         // let the Player shoot a Ninja Star�
 
@@ -254,7 +303,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         // macht die m�gliochkeiten um an der wand zu kleben sowie einen walljump�
 
-        if (isOnWall)
+        if (isOnWall )
 
         {
             Physics.gravity = gravityNormal;
@@ -272,15 +321,18 @@ public class PlayerMovement2 : MonoBehaviour
 
             canThrow = false;
 
+
+
             transform.Translate(Vector3.up * verticalInput * Time.deltaTime * climping);
 
-            if (isOnWall && Input.GetKeyDown(KeyCode.Space) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button0))
+            if (isOnWall && correctWallSide && Input.GetKeyDown(KeyCode.Space) || isOnWall && correctWallSide && Input.GetKeyDown(KeyCode.Joystick1Button0))
 
             {
 
                 //transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
                 playerRb.AddRelativeForce(-15, 25, 0, ForceMode.Impulse);
                 isOnWall = false;
+                canFlip = false;
                 anim.SetBool("IsGrounded_Wall", false);
                 anim.SetTrigger("OnWallJump");
 
@@ -362,7 +414,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         // let the Player Jump �
 
-        else if (Input.GetKeyDown(KeyCode.Space) && isOnGround  && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !isOnWall)
+        else if (Input.GetKeyDown(KeyCode.Space) && isOnGround  && !isOnWall || Input.GetButtonDown("Jump") && isOnGround && !isOnWall)
 
         {
             //AnimationTrigger
@@ -384,7 +436,7 @@ public class PlayerMovement2 : MonoBehaviour
             DustJump.Play();
             
         }
-        if (Input.GetKeyUp(KeyCode.Space) && !isOnGround && !isOnWall)
+        if (Input.GetKeyUp(KeyCode.Space) && !isOnGround && !isOnWall || Input.GetButtonUp("Jump") && !isOnGround && !isOnWall)
         {
             Physics.gravity = gravityFalling;
         }
@@ -484,7 +536,18 @@ public class PlayerMovement2 : MonoBehaviour
         else if (collision.gameObject.CompareTag("Wall") && !isOnGround)
 
         {
-
+            if(collision.transform.position.x > playerPosition.x)
+            {
+                wallRight = true;
+                wallLeft = false;
+                 
+            }
+            else if(collision.transform.position.x < playerPosition.x)
+            {
+                wallLeft = true;
+                wallRight = false;
+                
+            }
             isOnWall = true;
             Physics.gravity = gravityNormal;
             anim.SetBool("IsGrounded_Wall", true);
