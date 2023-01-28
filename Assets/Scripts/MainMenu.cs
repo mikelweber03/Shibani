@@ -5,11 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
+    public Animator anim;
+
+    public SceneTransition transition;
+
+    public float transitionTime = 2f;
+
     public Scene newGameScene;
+
+    public GameObject wipes;
 
     void Start()
     {
-        
+        wipes.SetActive(false);
     }
 
     // Update is called once per frame
@@ -20,13 +29,15 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene("Main Test");
+        transition.shouldSwitch = true;
     }
 
     public void QuitGame()
     {
         Application.Quit();
     }
+
+
 
 }
 
