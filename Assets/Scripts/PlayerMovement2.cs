@@ -66,7 +66,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private float atackTime = 0.4f;
 
-    private float atackCoolDown = 0.3f;
+    private float atackCoolDown = 0.2f;
 
 
 
@@ -267,7 +267,7 @@ public class PlayerMovement2 : MonoBehaviour
     void Update()
 
     {
-        Debug.Log(horizontalInput);
+        //Debug.Log(horizontalInput);
         // eingabe f�r die bewegung in wertikalerweise �
 
         horizontalInput = Input.GetAxis("Horizontal");
