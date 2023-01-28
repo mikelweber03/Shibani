@@ -66,7 +66,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private float atackTime = 0.4f;
 
-    private float atackCoolDown = 0.2f;
+    private float atackCoolDown = 0.3f;
 
 
 
@@ -274,17 +274,16 @@ public class PlayerMovement2 : MonoBehaviour
 
         verticalInput = Input.GetAxis("Vertical");
 
-
+        
 
         // let the Player shoot a Ninja Star�
-        //&& !isOnWall
 
-        if (Input.GetKeyDown(KeyCode.Q)  && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && gotStar)
+        if (Input.GetKeyDown(KeyCode.Q) && !isOnWall  && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar)
 
         {
 
             NinjaStarAbility();
-            //Debug.Log("sternwurf");
+            Debug.Log("sternwurf");
         }
 
         // Anim stats for Walking
@@ -320,7 +319,7 @@ public class PlayerMovement2 : MonoBehaviour
             
             anim.SetBool("CanDashJump", false);
 
-            //canThrow = false;
+            canThrow = false;
 
 
 
@@ -774,7 +773,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             gotStar = true;
 
-            //Debug.Log("gotstar");
+            Debug.Log("gotstar");
 
         }
 
@@ -784,7 +783,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             gotStar = false;
 
-            //Debug.Log("nostar");
+            Debug.Log("nostar");
 
         }
 

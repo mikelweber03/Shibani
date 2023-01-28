@@ -28,29 +28,43 @@ public class PlayerHealth : MonoBehaviour
         playerHit = this.GetComponent<VisualEffect>();
     }
 
+    public bool CanBeDamaged()
+    {
+        if (canbedamaged == true)
+        {
+            //Debug.Log("True");
+            return true;
+        }
+
+        else
+        {
+            
+            return false;
+        }
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("CatBullet"))
         {
-            if (currentHealth > 1 && canbedamaged == true)
+            if (currentHealth > 1 && CanBeDamaged() == true)
             {
                 Destroy(other.gameObject);
+                canbedamaged = false;
                 //playerHit.Play();
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
-                StartCoroutine("OnInvulnerable");
                 //Debug.Log("Why");
 
             }
-            else if (currentHealth == 1 && canbedamaged == true)
+            else if (currentHealth == 1)
             {
                 Destroy(other.gameObject);
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
                 deathmenu.ToggleEndMenu();
                 player.GetComponent("PlayerMovement").gameObject.SetActive(false);
-
             }
             if (other.CompareTag("DeathPlane"))
             {
@@ -58,6 +72,7 @@ public class PlayerHealth : MonoBehaviour
                 currentHealth = 0;
                 _healthBar.ChangeHealth(currentHealth);
             }
+            canbedamaged = true;
         }
     }
     //Check if player can loose health
@@ -67,27 +82,28 @@ public class PlayerHealth : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (currentHealth > 1 && canbedamaged == true)
+            if (currentHealth > 1 && CanBeDamaged() == true)
             {
                 currentHealth--;
                 knock.Knockback();
                 //Animation play
                 anim.SetTrigger("gotHit");
                 //playerHit.Play();
+                canbedamaged = false;
                 //blink.tookDamage();
                 //Debug.Log("why");
                 _healthBar.ChangeHealth(currentHealth);
-                StartCoroutine("OnInvulnerable");
+
 
             }
-            else if (currentHealth == 1 && canbedamaged == true)
+            else if (currentHealth == 1)
             {
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
                 //deathmenu.ToggleEndMenu();
                 player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
-
             }
+            canbedamaged = true;
         }
         //If Healthpickup then regen health and destroy pickup
         if (collision.gameObject.CompareTag("HealthPickup"))
@@ -110,17 +126,6 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
-    IEnumerator OnInvulnerable()
-    {
-        canbedamaged = false;
-
-        //blink.tookDamage();
-        yield return new WaitForSeconds(1.5f); //how long player invulnerable
-
-        
-        canbedamaged = true;
-    }
-
-
+ 
 
 }
