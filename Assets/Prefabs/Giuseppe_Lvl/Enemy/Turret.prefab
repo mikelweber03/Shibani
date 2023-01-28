@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &983642994
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 983642995}
-  m_Layer: 7
-  m_Name: ShootPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &983642995
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983642994}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3, y: 11.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6890744792896250562}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &823193885316083225
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +197,7 @@ MonoBehaviour:
   - {fileID: 4701300222150675818}
   - {fileID: 8330168943785164041}
   m_Bounds:
-    m_Center: {x: 0.0063717365, y: 0.35128784, z: 0}
+    m_Center: {x: 0.0063564777, y: 0.35128593, z: 0}
     m_Extent: {x: 3.6632926, y: 4.5386534, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -425,7 +394,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 683130135733962352}
   m_Bounds:
-    m_Center: {x: -0.004752815, y: 0.29551697, z: 0}
+    m_Center: {x: -0.004737556, y: 0.29551697, z: 0}
     m_Extent: {x: 0.3001685, y: 1.0862503, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -469,7 +438,6 @@ Transform:
   - {fileID: 5228399798195463066}
   - {fileID: 3527015739808693737}
   - {fileID: 311564580325803368}
-  - {fileID: 983642995}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -518,23 +486,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc79ef17c8a1ffc4b9d580d320582fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5626952647590544848, guid: b325093750050b24a8abbb75ccc9ccfc, type: 3}
+  bulletLeft: {fileID: 7998882623781724086, guid: 28d68c8ec6381e2499044916aa37ca8f, type: 3}
   animator: {fileID: 5228399799021198110}
-  enemyHit: {fileID: 3527015739808693738}
-  enemyDeath: {fileID: 2854826550915187081}
   bgotHit: 0
   binRange: 0
   bisDead: 0
   bisFiring: 0
   balertState: 0
+  bwhoHittedMe: 0
   maxHealth: 4
+  target: {fileID: 0}
+  weaponMuzzle: {fileID: 0}
+  bullet: {fileID: 0}
+  fireRate: 3000
+  shootingPower: 20
   health: 100
-  Range: 2
-  Target: {fileID: 0}
-  Gun: {fileID: 5714922403166060055}
-  FireRate: 1
-  Shootpoint: {fileID: 983642995}
-  Force: 1
+  enemyHit: {fileID: 3527015739808693738}
+  enemyDeath: {fileID: 2854826550915187081}
 --- !u!1 &7544756833080893309
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,8 +609,8 @@ MonoBehaviour:
   - {fileID: 683130135733962352}
   - {fileID: 4701300222150675818}
   m_Bounds:
-    m_Center: {x: -0.096357346, y: -2.1063967, z: 0}
-    m_Extent: {x: 3.4986439, y: 6.3739643, z: 0}
+    m_Center: {x: -0.096357346, y: -2.1064014, z: 0}
+    m_Extent: {x: 3.4986439, y: 6.3739614, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

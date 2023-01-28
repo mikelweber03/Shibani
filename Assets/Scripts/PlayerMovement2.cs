@@ -267,7 +267,7 @@ public class PlayerMovement2 : MonoBehaviour
     void Update()
 
     {
-        //Debug.Log(horizontalInput);
+        Debug.Log(horizontalInput);
         // eingabe f�r die bewegung in wertikalerweise �
 
         horizontalInput = Input.GetAxis("Horizontal");
