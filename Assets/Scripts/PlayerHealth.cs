@@ -28,6 +28,25 @@ public class PlayerHealth : MonoBehaviour
         playerHit = this.GetComponent<VisualEffect>();
     }
 
+    private void Update()
+    {
+        if (currentHealth == 0)
+            {
+                _healthBar.ChangeHealth(currentHealth);
+                deathmenu.ToggleEndMenu();
+                //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
+            }
+    }
+
+    void CheckPlayerDead()
+    {
+        if (currentHealth == 0)
+        {
+            _healthBar.ChangeHealth(currentHealth);
+            deathmenu.ToggleEndMenu();
+            //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
+        }
+    }
     public bool CanBeDamaged()
     {
         if (canbedamaged == true)
@@ -64,13 +83,14 @@ public class PlayerHealth : MonoBehaviour
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
                 deathmenu.ToggleEndMenu();
-                player.GetComponent("PlayerMovement").gameObject.SetActive(false);
+                //player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
             if (other.CompareTag("DeathPlane"))
             {
                 Debug.Log("Skurt");
                 currentHealth = 0;
                 _healthBar.ChangeHealth(currentHealth);
+                deathmenu.ToggleEndMenu();
             }
             canbedamaged = true;
         }
@@ -101,9 +121,10 @@ public class PlayerHealth : MonoBehaviour
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
                 //deathmenu.ToggleEndMenu();
-                player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
+                //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
             }
             canbedamaged = true;
+            
         }
         //If Healthpickup then regen health and destroy pickup
         if (collision.gameObject.CompareTag("HealthPickup"))
@@ -116,12 +137,12 @@ public class PlayerHealth : MonoBehaviour
             }
 
         }
-        if (collision.gameObject.CompareTag("Death"))
+        if (collision.gameObject.CompareTag("DeathPlane"))
         {
             currentHealth = 0;
             _healthBar.ChangeHealth(currentHealth);
             deathmenu.ToggleEndMenu();
-            player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
+            //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
         }
         
     }
