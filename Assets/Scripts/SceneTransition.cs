@@ -8,7 +8,7 @@ public class SceneTransition : MonoBehaviour
 {
 
     public Animator anim;
-
+    public DeathMenu deathmenu;
     public bool shouldSwitch;
 
     public float transitionTime = 1f;
@@ -34,6 +34,8 @@ public class SceneTransition : MonoBehaviour
             wipes.SetActive(true);
             anim.SetTrigger("Start");
         }
+        
+
     }
 
     private void LoadNextLevel()
@@ -55,4 +57,8 @@ public class SceneTransition : MonoBehaviour
 
         
     }
+
+
+
+
 }

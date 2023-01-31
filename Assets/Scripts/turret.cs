@@ -60,7 +60,7 @@ public class turret : MonoBehaviour
         GotHit();
         //ShootBullet();
         //CheckIfTimeToFire();
-        ShootPlayer();
+        //ShootPlayer();
     }
 
     void CheckIfTimeToFire()

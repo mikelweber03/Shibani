@@ -6781,6 +6781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 1256056384}
+  deathmenu: {fileID: 247852572}
   shouldSwitch: 0
   transitionTime: 1
   wipes: {fileID: 1256056383}
@@ -11162,6 +11163,10 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 613026691}
+    - target: {fileID: 1776282551, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 1256056385}
     - target: {fileID: 3333887985485434056, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
       propertyPath: starBar
       value: 

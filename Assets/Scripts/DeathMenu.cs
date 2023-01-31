@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
 {
+    
     public Animator anim;
     //Turn off Menu at the beginning of the game
     void Start()

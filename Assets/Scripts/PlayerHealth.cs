@@ -12,7 +12,8 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 3;
     private int currentHealth;
     public bool canbedamaged = true;
-    
+    public SceneTransition transition;
+
     public DeathMenu deathmenu;
     public CharacterBlink blink;
     public CheckHealth _healthBar;
@@ -30,12 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (currentHealth == 0)
-            {
-                _healthBar.ChangeHealth(currentHealth);
-                deathmenu.ToggleEndMenu();
-                //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
-            }
+        CheckPlayerDead();
     }
 
     void CheckPlayerDead()
@@ -43,6 +39,8 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth == 0)
         {
             _healthBar.ChangeHealth(currentHealth);
+            //
+            //transition.shouldSwitch = true;
             deathmenu.ToggleEndMenu();
             //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
         }
@@ -82,6 +80,8 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(other.gameObject);
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
+                ///
+                //transition.shouldSwitch = true;
                 deathmenu.ToggleEndMenu();
                 //player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
@@ -90,6 +90,8 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log("Skurt");
                 currentHealth = 0;
                 _healthBar.ChangeHealth(currentHealth);
+                //
+                //transition.shouldSwitch = true;
                 deathmenu.ToggleEndMenu();
             }
             canbedamaged = true;
@@ -141,6 +143,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = 0;
             _healthBar.ChangeHealth(currentHealth);
+            //transition.shouldSwitch = true;
             deathmenu.ToggleEndMenu();
             //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
         }
