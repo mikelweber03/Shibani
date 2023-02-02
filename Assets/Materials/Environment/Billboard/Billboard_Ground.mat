@@ -36,7 +36,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BaseColorMap:
         m_Texture: {fileID: 2800000, guid: 264a84d1eaf50e34bba92f5294f80599, type: 3}
-        m_Scale: {x: 1, y: 2.61}
+        m_Scale: {x: 1.52, y: 12.32}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
         m_Texture: {fileID: 0}
@@ -72,7 +72,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 264a84d1eaf50e34bba92f5294f80599, type: 3}
-        m_Scale: {x: 1, y: 2.61}
+        m_Scale: {x: 1.52, y: 12.32}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
         m_Texture: {fileID: 0}
@@ -174,7 +174,7 @@ Material:
     - _HeightPoMAmplitude: 2
     - _HeightTessAmplitude: 2
     - _HeightTessCenter: 0.5
-    - _InvTilingScale: 0.55401665
+    - _InvTilingScale: 0.14450867
     - _Ior: 1.5
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
