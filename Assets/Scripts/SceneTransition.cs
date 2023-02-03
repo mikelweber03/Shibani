@@ -8,14 +8,17 @@ public class SceneTransition : MonoBehaviour
 {
 
     public Animator anim;
-
+    public DeathMenu deathmenu;
     public bool shouldSwitch;
 
     public float transitionTime = 1f;
+    public GameObject wipes;
+
     // Start is called before the first frame update
     void Start()
     {
         shouldSwitch = false;
+        wipes.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,7 +27,15 @@ public class SceneTransition : MonoBehaviour
         if (shouldSwitch)
         {
             LoadNextLevel();
+            
         }
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            wipes.SetActive(true);
+            anim.SetTrigger("Start");
+        }
+        
+
     }
 
     private void LoadNextLevel()
@@ -34,10 +45,20 @@ public class SceneTransition : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
-        anim.SetTrigger("Start");
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            wipes.SetActive(true);
+            anim.SetTrigger("Start");
+        }
+            
 
         yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(levelIndex);     
 
-        SceneManager.LoadScene(levelIndex);
+        
     }
+
+
+
+
 }
