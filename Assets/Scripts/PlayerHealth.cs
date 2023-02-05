@@ -45,35 +45,19 @@ public class PlayerHealth : MonoBehaviour
             //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
         }
     }
-    public bool CanBeDamaged()
-    {
-        if (canbedamaged == true)
-        {
-            //Debug.Log("True");
-            return true;
-        }
-
-        else
-        {
-            
-            return false;
-        }
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("CatBullet"))
         {
-            if (currentHealth > 1 && CanBeDamaged() == true)
+            if (currentHealth > 1 && canbedamaged == true)
             {
                 Destroy(other.gameObject);
-                canbedamaged = false;
                 //playerHit.Play();
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
                 //Debug.Log("Why");
-
+                StartCoroutine("OnInvulnerable");
             }
             else if (currentHealth == 1)
             {
@@ -104,18 +88,17 @@ public class PlayerHealth : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (currentHealth > 1 && CanBeDamaged() == true)
+            if (currentHealth > 1 && canbedamaged == true)
             {
                 currentHealth--;
                 knock.Knockback();
                 //Animation play
                 anim.SetTrigger("gotHit");
                 //playerHit.Play();
-                canbedamaged = false;
                 //blink.tookDamage();
                 //Debug.Log("why");
                 _healthBar.ChangeHealth(currentHealth);
-
+                StartCoroutine("OnInvulnerable");
 
             }
             else if (currentHealth == 1)
@@ -150,6 +133,17 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
- 
+    IEnumerator OnInvulnerable()
+    {
+        canbedamaged = false;
+
+        //blink.tookDamage();
+        yield return new WaitForSeconds(1.5f); //how long player invulnerable
+
+
+        canbedamaged = true;
+    }
+
+
 
 }
