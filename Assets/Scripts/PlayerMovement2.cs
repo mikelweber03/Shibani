@@ -57,7 +57,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     [Header("swordAtack")]
 
-    [SerializeField]
+    //[SerializeField]
     public VisualEffect slash;
 
     public MeshRenderer swortMeshRenderer;
@@ -160,7 +160,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         starAmont = 0;
 
-
+        slash = this.GetComponent<VisualEffect>();
         playerRb = GetComponent<Rigidbody>();
         gravityNormal = new Vector3(0f, -9.8f, 0f) * gravityModifier;
         gravityFalling = new Vector3(0f, -9.8f, 0f) * fallinggravity;
@@ -720,11 +720,9 @@ public class PlayerMovement2 : MonoBehaviour
         canAtack = false;
         anim.SetBool("CanAttack", false);
 
-        swortMeshRenderer.enabled = true;
+        slash.Play();
 
         swortBoxCollider.enabled = true;
-
-        slash.Play();
 
         yield return new WaitForSeconds(atackTime);
 
