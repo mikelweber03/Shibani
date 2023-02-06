@@ -134,7 +134,7 @@ public class PlayerHealth : MonoBehaviour
         canbedamaged = false;
 
         //blink.tookDamage();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.8f);
 
 
         canbedamaged = true;
