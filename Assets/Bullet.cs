@@ -4,38 +4,30 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
-    float moveSpeed = 10f;
-
-    Rigidbody rb;
-
     public GameObject target;
-    Vector2 moveDirection;
 
-    // New Variables
+    [SerializeField] private float projectileSpeed = 10f;
+    [SerializeField] private float projectileDamage = 10f;
+    [SerializeField] private float projectileLifeTime = 5f;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        //moveDirection = -(target.transform.position - transform.position).normalized * moveSpeed;
-        //rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
-        Destroy(gameObject, 3f);
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.left * projectileSpeed * Time.deltaTime);
+        Destroy(gameObject, projectileLifeTime);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.name.Equals("Player"))
-    //    {
-    //        Debug.Log("Hit!");
-    //        Destroy(gameObject);
-    //    }
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //PlayerManager.Instance.TakeDamageFromEnemy(projectileDamage);
+            Destroy(gameObject);
+            Debug.Log("PlayerGotHit");
+        }
+        else
+        {
+            Destroy(gameObject, projectileLifeTime);
+        }
+    }
 }

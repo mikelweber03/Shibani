@@ -1312,7 +1312,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -75, y: -12}
+  m_AnchoredPosition: {x: -74.99994, y: -12}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1363057628
@@ -6681,6 +6681,9 @@ MonoBehaviour:
     Ninjastar Attack - Q
 
 
+    Wall Drop - F
+
+
     Move Left/Right - A/D
 
 
@@ -6923,6 +6926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 1938448336}
+  deathmenu: {fileID: 0}
   shouldSwitch: 0
   transitionTime: 1
   wipes: {fileID: 1938448334}

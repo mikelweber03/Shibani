@@ -102,7 +102,7 @@ public class EnemyMovement1 : MonoBehaviour
                 count++;
 
         }
-
+        
         if (other.gameObject.tag == "NinjaStern")
         {
             enemyHit.Play();

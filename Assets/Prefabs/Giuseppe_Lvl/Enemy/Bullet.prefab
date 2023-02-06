@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -986507236456957390}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: CatBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7777790188044410233, guid: 3c5fbc07da961f84b834020aa67be0b8, type: 3}
+  projectileSpeed: 10
+  projectileDamage: 10
+  projectileLifeTime: 5
 --- !u!135 &-986507236456957390
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -124,7 +127,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5626952647590544848}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 4.265

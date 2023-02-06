@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerMovement2 : MonoBehaviour
 {
@@ -18,8 +19,6 @@ public class PlayerMovement2 : MonoBehaviour
     public float fallinggravity = 10;
     Vector3 gravityNormal;
     Vector3 gravityFalling;
-
-
 
     public Vector3 playerPosition;
 
@@ -57,6 +56,9 @@ public class PlayerMovement2 : MonoBehaviour
 
 
     [Header("swordAtack")]
+
+    //[SerializeField]
+    public VisualEffect slash;
 
     public MeshRenderer swortMeshRenderer;
 
@@ -158,6 +160,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         starAmont = 0;
 
+        slash = this.GetComponentInChildren<VisualEffect>();
         playerRb = GetComponent<Rigidbody>();
         gravityNormal = new Vector3(0f, -9.8f, 0f) * gravityModifier;
         gravityFalling = new Vector3(0f, -9.8f, 0f) * fallinggravity;
@@ -348,7 +351,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             // release from wall�
 
-            else if (isOnWall && Input.GetKeyDown(KeyCode.Q) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1))
+            else if (isOnWall && Input.GetKeyDown(KeyCode.F) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1) || isOnWall && isOnGround) 
 
             {
 
@@ -360,6 +363,7 @@ public class PlayerMovement2 : MonoBehaviour
                 isOnWall = false;
                 canThrow = true;
                 anim.SetBool("IsGrounded_Wall", false);
+                anim.SetBool("IsGrounded_Ground", true);
 
                 //grounded = true;
 
@@ -582,6 +586,12 @@ public class PlayerMovement2 : MonoBehaviour
             playerRb.useGravity = true;
 
         }
+
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = false;
+            anim.SetBool("ÍsGrounded_Ground", false);
+        }
         
         else if (collision.gameObject.CompareTag("AnimBox"))
         {
@@ -693,7 +703,7 @@ public class PlayerMovement2 : MonoBehaviour
     void SwordAbility()
 
     {
-
+        
         if (canAtack)
 
         {
@@ -712,13 +722,12 @@ public class PlayerMovement2 : MonoBehaviour
 
 
     IEnumerator SwordAttack()
-
     {
-
+        
         canAtack = false;
         anim.SetBool("CanAttack", false);
 
-        swortMeshRenderer.enabled = true;
+        slash.Play();
 
         swortBoxCollider.enabled = true;
 
