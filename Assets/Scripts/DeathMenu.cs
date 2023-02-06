@@ -31,6 +31,8 @@ public class DeathMenu : MonoBehaviour
     {
      
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Save position of all existing character and objects in Game manager and re instantiate them after the players death
+        //Position of latest checkpoint is saved when player crosses checkpoint
         
 
     }

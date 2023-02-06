@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerMovement2 : MonoBehaviour
 {
@@ -18,8 +19,6 @@ public class PlayerMovement2 : MonoBehaviour
     public float fallinggravity = 10;
     Vector3 gravityNormal;
     Vector3 gravityFalling;
-
-
 
     public Vector3 playerPosition;
 
@@ -58,6 +57,9 @@ public class PlayerMovement2 : MonoBehaviour
 
     [Header("swordAtack")]
 
+    //[SerializeField]
+    public VisualEffect slash;
+
     public MeshRenderer swortMeshRenderer;
 
     public BoxCollider swortBoxCollider;
@@ -66,7 +68,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private float atackTime = 0.4f;
 
-    private float atackCoolDown = 0.3f;
+    private float atackCoolDown = 0.2f;
 
 
 
@@ -158,6 +160,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         starAmont = 0;
 
+        slash = this.GetComponentInChildren<VisualEffect>();
         playerRb = GetComponent<Rigidbody>();
         gravityNormal = new Vector3(0f, -9.8f, 0f) * gravityModifier;
         gravityFalling = new Vector3(0f, -9.8f, 0f) * fallinggravity;
@@ -267,23 +270,24 @@ public class PlayerMovement2 : MonoBehaviour
     void Update()
 
     {
-        Debug.Log(horizontalInput);
+        //Debug.Log(horizontalInput);
         // eingabe f�r die bewegung in wertikalerweise �
 
         horizontalInput = Input.GetAxis("Horizontal");
 
         verticalInput = Input.GetAxis("Vertical");
 
-        
+
 
         // let the Player shoot a Ninja Star�
+        //&& !isOnWall
 
-        if (Input.GetKeyDown(KeyCode.Q) && !isOnWall  && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar)
+        if (Input.GetKeyDown(KeyCode.Q)  && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && gotStar)
 
         {
 
             NinjaStarAbility();
-            Debug.Log("sternwurf");
+            //Debug.Log("sternwurf");
         }
 
         // Anim stats for Walking
@@ -319,7 +323,7 @@ public class PlayerMovement2 : MonoBehaviour
             
             anim.SetBool("CanDashJump", false);
 
-            canThrow = false;
+            //canThrow = false;
 
 
 
@@ -347,7 +351,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             // release from wall�
 
-            else if (isOnWall && Input.GetKeyDown(KeyCode.Q) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1))
+            else if (isOnWall && Input.GetKeyDown(KeyCode.F) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1) || isOnWall && isOnGround) 
 
             {
 
@@ -359,6 +363,7 @@ public class PlayerMovement2 : MonoBehaviour
                 isOnWall = false;
                 canThrow = true;
                 anim.SetBool("IsGrounded_Wall", false);
+                anim.SetBool("IsGrounded_Ground", true);
 
                 //grounded = true;
 
@@ -581,6 +586,12 @@ public class PlayerMovement2 : MonoBehaviour
             playerRb.useGravity = true;
 
         }
+
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = false;
+            anim.SetBool("IsGrounded_Ground", false);
+        }
         
         else if (collision.gameObject.CompareTag("AnimBox"))
         {
@@ -692,7 +703,7 @@ public class PlayerMovement2 : MonoBehaviour
     void SwordAbility()
 
     {
-
+        
         if (canAtack)
 
         {
@@ -711,13 +722,12 @@ public class PlayerMovement2 : MonoBehaviour
 
 
     IEnumerator SwordAttack()
-
     {
-
+        
         canAtack = false;
         anim.SetBool("CanAttack", false);
 
-        swortMeshRenderer.enabled = true;
+        slash.Play();
 
         swortBoxCollider.enabled = true;
 
@@ -773,7 +783,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             gotStar = true;
 
-            Debug.Log("gotstar");
+            //Debug.Log("gotstar");
 
         }
 
@@ -783,7 +793,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             gotStar = false;
 
-            Debug.Log("nostar");
+            //Debug.Log("nostar");
 
         }
 
