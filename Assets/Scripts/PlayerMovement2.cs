@@ -351,7 +351,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             // release from wall�
 
-            else if (isOnWall && Input.GetKeyDown(KeyCode.Q) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1) || isOnWall && isOnGround) 
+            else if (isOnWall && Input.GetKeyDown(KeyCode.F) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1) || isOnWall && isOnGround) 
 
             {
 
