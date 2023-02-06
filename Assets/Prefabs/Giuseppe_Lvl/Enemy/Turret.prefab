@@ -425,7 +425,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 683130135733962352}
   m_Bounds:
-    m_Center: {x: -0.004752815, y: 0.29551697, z: 0}
+    m_Center: {x: -0.004752815, y: 0.29551792, z: 0}
     m_Extent: {x: 0.3001685, y: 1.0862503, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -519,7 +519,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 5626952647590544848, guid: b325093750050b24a8abbb75ccc9ccfc, type: 3}
-  animator: {fileID: 5228399799021198110}
   enemyHit: {fileID: 3527015739808693738}
   enemyDeath: {fileID: 2854826550915187081}
   bgotHit: 0
@@ -532,9 +531,17 @@ MonoBehaviour:
   Range: 2
   Target: {fileID: 0}
   Gun: {fileID: 5714922403166060055}
-  FireRate: 1
   Shootpoint: {fileID: 983642995}
   Force: 1
+  target: {fileID: 0}
+  player: {fileID: 0}
+  enemyRange: 20
+  maxFiringRange: 20
+  projectileSpawnPoint:
+  - {fileID: 983642995}
+  projectilePrefab: {fileID: 5626952647590544848, guid: b325093750050b24a8abbb75ccc9ccfc, type: 3}
+  FireRate: 1
+  animator: {fileID: 5228399799021198110}
 --- !u!1 &7544756833080893309
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,8 +648,8 @@ MonoBehaviour:
   - {fileID: 683130135733962352}
   - {fileID: 4701300222150675818}
   m_Bounds:
-    m_Center: {x: -0.096357346, y: -2.1063967, z: 0}
-    m_Extent: {x: 3.4986439, y: 6.3739643, z: 0}
+    m_Center: {x: -0.096372604, y: -2.1063967, z: 0}
+    m_Extent: {x: 3.4986439, y: 6.3739634, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -716,6 +723,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6890744792896250562}
     m_Modifications:
+    - target: {fileID: 2146130047039823905, guid: 38302f1f04370e04e80122c7b2f14b10, type: 3}
+      propertyPath: m_InitialEventName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146130047039823905, guid: 38302f1f04370e04e80122c7b2f14b10, type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4468716670446691520, guid: 38302f1f04370e04e80122c7b2f14b10, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -799,6 +814,14 @@ PrefabInstance:
       propertyPath: m_Asset
       value: 
       objectReference: {fileID: 8926484042661614526, guid: 65aff055a55bee44eb437745d9456680, type: 3}
+    - target: {fileID: 8682231768132594781, guid: ecdb9ed10d46b9643b868190e3a553fc, type: 3}
+      propertyPath: m_InitialEventName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682231768132594781, guid: ecdb9ed10d46b9643b868190e3a553fc, type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8682231768132594782, guid: ecdb9ed10d46b9643b868190e3a553fc, type: 3}
       propertyPath: m_RootOrder
       value: 6
