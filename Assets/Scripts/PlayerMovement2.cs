@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerMovement2 : MonoBehaviour
 {
@@ -18,8 +19,6 @@ public class PlayerMovement2 : MonoBehaviour
     public float fallinggravity = 10;
     Vector3 gravityNormal;
     Vector3 gravityFalling;
-
-
 
     public Vector3 playerPosition;
 
@@ -57,6 +56,9 @@ public class PlayerMovement2 : MonoBehaviour
 
 
     [Header("swordAtack")]
+
+    [SerializeField]
+    public VisualEffect slash;
 
     public MeshRenderer swortMeshRenderer;
 
@@ -157,6 +159,7 @@ public class PlayerMovement2 : MonoBehaviour
         haed = GetComponent<SpriteRenderer>();
 
         starAmont = 0;
+
 
         playerRb = GetComponent<Rigidbody>();
         gravityNormal = new Vector3(0f, -9.8f, 0f) * gravityModifier;
@@ -693,7 +696,7 @@ public class PlayerMovement2 : MonoBehaviour
     void SwordAbility()
 
     {
-
+        
         if (canAtack)
 
         {
@@ -712,16 +715,17 @@ public class PlayerMovement2 : MonoBehaviour
 
 
     IEnumerator SwordAttack()
-
     {
-
+        
         canAtack = false;
         anim.SetBool("CanAttack", false);
 
         swortMeshRenderer.enabled = true;
 
         swortBoxCollider.enabled = true;
-
+        Debug.Log("before");
+        slash.Play();
+        Debug.Log("after");
         yield return new WaitForSeconds(atackTime);
 
         swortMeshRenderer.enabled = false;
