@@ -723,9 +723,9 @@ public class PlayerMovement2 : MonoBehaviour
         swortMeshRenderer.enabled = true;
 
         swortBoxCollider.enabled = true;
-        Debug.Log("before");
+
         slash.Play();
-        Debug.Log("after");
+
         yield return new WaitForSeconds(atackTime);
 
         swortMeshRenderer.enabled = false;

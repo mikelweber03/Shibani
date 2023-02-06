@@ -56,7 +56,6 @@ public class PlayerHealth : MonoBehaviour
                 //playerHit.Play();
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
-                //Debug.Log("Why");
                 StartCoroutine("OnInvulnerable");
             }
             else if (currentHealth == 1)
@@ -64,21 +63,18 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(other.gameObject);
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
-                ///
                 //transition.shouldSwitch = true;
                 deathmenu.ToggleEndMenu();
                 //player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
             if (other.CompareTag("DeathPlane"))
             {
-                Debug.Log("Skurt");
                 currentHealth = 0;
                 _healthBar.ChangeHealth(currentHealth);
-                //
                 //transition.shouldSwitch = true;
                 deathmenu.ToggleEndMenu();
             }
-            
+           
         }
     }
     //Check if player can loose health
@@ -98,7 +94,6 @@ public class PlayerHealth : MonoBehaviour
                 //blink.tookDamage();
                 //Debug.Log("why");
                 _healthBar.ChangeHealth(currentHealth);
-                Debug.Log("Lop");
                 StartCoroutine("OnInvulnerable");
 
             }
