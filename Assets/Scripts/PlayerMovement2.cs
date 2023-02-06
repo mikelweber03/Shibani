@@ -351,7 +351,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             // release from wall�
 
-            else if (isOnWall && Input.GetKeyDown(KeyCode.Q) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1))
+            else if (isOnWall && Input.GetKeyDown(KeyCode.Q) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1) || isOnWall && isOnGround) 
 
             {
 
@@ -363,6 +363,7 @@ public class PlayerMovement2 : MonoBehaviour
                 isOnWall = false;
                 canThrow = true;
                 anim.SetBool("IsGrounded_Wall", false);
+                anim.SetBool("IsGrounded_Ground", true);
 
                 //grounded = true;
 
