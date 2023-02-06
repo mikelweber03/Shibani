@@ -160,7 +160,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         starAmont = 0;
 
-        slash = this.GetComponent<VisualEffect>();
+        slash = this.GetComponentInChildren<VisualEffect>();
         playerRb = GetComponent<Rigidbody>();
         gravityNormal = new Vector3(0f, -9.8f, 0f) * gravityModifier;
         gravityFalling = new Vector3(0f, -9.8f, 0f) * fallinggravity;
