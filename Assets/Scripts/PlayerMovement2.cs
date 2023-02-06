@@ -586,6 +586,12 @@ public class PlayerMovement2 : MonoBehaviour
             playerRb.useGravity = true;
 
         }
+
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = false;
+            anim.SetBool("ÍsGrounded_Ground", false);
+        }
         
         else if (collision.gameObject.CompareTag("AnimBox"))
         {
