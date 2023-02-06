@@ -45,21 +45,6 @@ public class PlayerHealth : MonoBehaviour
             //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
         }
     }
-    public bool CanBeDamaged()
-    {
-        if (canbedamaged == true)
-        {
-            //Debug.Log("True");
-            return true;
-        }
-
-        else
-        {
-            
-            return false;
-        }
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -71,11 +56,10 @@ public class PlayerHealth : MonoBehaviour
                 //playerHit.Play();
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
-                StartCoroutine("OnInvulnerable");
                 //Debug.Log("Why");
-
+                StartCoroutine("OnInvulnerable");
             }
-            else if (currentHealth == 1 && canbedamaged == true)
+            else if (currentHealth == 1)
             {
                 Destroy(other.gameObject);
                 currentHealth--;
@@ -94,6 +78,7 @@ public class PlayerHealth : MonoBehaviour
                 //transition.shouldSwitch = true;
                 deathmenu.ToggleEndMenu();
             }
+            
         }
     }
     //Check if player can loose health
@@ -113,17 +98,18 @@ public class PlayerHealth : MonoBehaviour
                 //blink.tookDamage();
                 //Debug.Log("why");
                 _healthBar.ChangeHealth(currentHealth);
+                Debug.Log("Lop");
                 StartCoroutine("OnInvulnerable");
 
             }
-            else if (currentHealth == 1 && canbedamaged == true)
+            else if (currentHealth == 1)
             {
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
                 //deathmenu.ToggleEndMenu();
                 //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
             }
-            canbedamaged = true;
+            
             
         }
         //If Healthpickup then regen health and destroy pickup
@@ -153,9 +139,9 @@ public class PlayerHealth : MonoBehaviour
         canbedamaged = false;
 
         //blink.tookDamage();
-        yield return new WaitForSeconds(1.5f); //how long player invulnerable
+        yield return new WaitForSeconds(1.5f);
 
-        
+
         canbedamaged = true;
     }
 
