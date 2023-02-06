@@ -590,7 +590,7 @@ public class PlayerMovement2 : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = false;
-            anim.SetBool("ÍsGrounded_Ground", false);
+            anim.SetBool("IsGrounded_Ground", false);
         }
         
         else if (collision.gameObject.CompareTag("AnimBox"))
