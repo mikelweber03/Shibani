@@ -64,7 +64,13 @@ public class turret : MonoBehaviour
         CheckPlayerDistance();
         GotHit();
         //ShootBullet();
-        if (bisFiring)
+        //CheckIfTimeToFire();
+        //ShootPlayer();
+    }
+
+    void CheckIfTimeToFire()
+    {
+        if (Time.time > nextFire)
         {
             Fire();
         }

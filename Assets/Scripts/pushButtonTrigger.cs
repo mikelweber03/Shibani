@@ -19,10 +19,23 @@ public class pushButtonTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         //Lucianos code in if statement: other.gameObject.tag == "LootBox" 
         if ( other.gameObject.tag == "Player")
         {
             Destroy(Door);
+            StartCoroutine(Pushdown());
+        }
+    }
+
+    IEnumerator Pushdown()
+    {
+        Vector3 pos;
+        for (int i = 0; i < 25; i++)
+        {
+            pos = new Vector3(transform.position.x, transform.position.y - 0.01f, transform.position.z);
+            transform.position = pos;
+            yield return new WaitForSeconds(0.02f);
         }
     }
 }

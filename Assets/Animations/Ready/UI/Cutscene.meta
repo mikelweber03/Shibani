@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 413c433fcb2a513488ce938cfbed0d50
+<<<<<<<< HEAD:Assets/Materials/Environment/Jump_Sign/Materials.meta
+guid: 207e239983a43494a876f00b0499dcae
+========
+guid: 48b876cb8b956af42ac5eddb8caa77ce
+>>>>>>>> Giuseppe-Kingdom:Assets/Materials/Environment/FireHydrant.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

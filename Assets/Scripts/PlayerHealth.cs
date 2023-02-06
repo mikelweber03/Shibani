@@ -12,7 +12,8 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 3;
     private int currentHealth;
     public bool canbedamaged = true;
-    
+    public SceneTransition transition;
+
     public DeathMenu deathmenu;
     public CharacterBlink blink;
     public CheckHealth _healthBar;
@@ -28,20 +29,21 @@ public class PlayerHealth : MonoBehaviour
         playerHit = this.GetComponent<VisualEffect>();
     }
 
-    public bool CanBeDamaged()
+    private void Update()
     {
-        if (canbedamaged == true)
-        {
-            //Debug.Log("True");
-            return true;
-        }
+        CheckPlayerDead();
+    }
 
-        else
+    void CheckPlayerDead()
+    {
+        if (currentHealth == 0)
         {
-            
-            return false;
+            _healthBar.ChangeHealth(currentHealth);
+            //
+            //transition.shouldSwitch = true;
+            deathmenu.ToggleEndMenu();
+            //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
         }
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,23 +58,28 @@ public class PlayerHealth : MonoBehaviour
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
                 //Debug.Log("Why");
-
+                StartCoroutine("OnInvulnerable");
             }
             else if (currentHealth == 1)
             {
                 Destroy(other.gameObject);
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
+                ///
+                //transition.shouldSwitch = true;
                 deathmenu.ToggleEndMenu();
-                player.GetComponent("PlayerMovement").gameObject.SetActive(false);
+                //player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
             if (other.CompareTag("DeathPlane"))
             {
                 Debug.Log("Skurt");
                 currentHealth = 0;
                 _healthBar.ChangeHealth(currentHealth);
+                //
+                //transition.shouldSwitch = true;
+                deathmenu.ToggleEndMenu();
             }
-            canbedamaged = true;
+            
         }
     }
     //Check if player can loose health
@@ -93,7 +100,8 @@ public class PlayerHealth : MonoBehaviour
                 //blink.tookDamage();
                 //Debug.Log("why");
                 _healthBar.ChangeHealth(currentHealth);
-
+                Debug.Log("Lop");
+                StartCoroutine("OnInvulnerable");
 
             }
             else if (currentHealth == 1)
@@ -101,9 +109,10 @@ public class PlayerHealth : MonoBehaviour
                 currentHealth--;
                 _healthBar.ChangeHealth(currentHealth);
                 //deathmenu.ToggleEndMenu();
-                player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
+                //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
             }
-            canbedamaged = true;
+            
+            
         }
         //If Healthpickup then regen health and destroy pickup
         if (collision.gameObject.CompareTag("HealthPickup"))
@@ -116,16 +125,28 @@ public class PlayerHealth : MonoBehaviour
             }
 
         }
-        if (collision.gameObject.CompareTag("Death"))
+        if (collision.gameObject.CompareTag("DeathPlane"))
         {
             currentHealth = 0;
             _healthBar.ChangeHealth(currentHealth);
+            //transition.shouldSwitch = true;
             deathmenu.ToggleEndMenu();
-            player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
+            //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
         }
         
     }
 
- 
+    IEnumerator OnInvulnerable()
+    {
+        canbedamaged = false;
+
+        //blink.tookDamage();
+        yield return new WaitForSeconds(1.5f);
+
+
+        canbedamaged = true;
+    }
+
+
 
 }
