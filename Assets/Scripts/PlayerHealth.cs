@@ -78,7 +78,7 @@ public class PlayerHealth : MonoBehaviour
                 //transition.shouldSwitch = true;
                 deathmenu.ToggleEndMenu();
             }
-            canbedamaged = true;
+            
         }
     }
     //Check if player can loose health
@@ -98,6 +98,7 @@ public class PlayerHealth : MonoBehaviour
                 //blink.tookDamage();
                 //Debug.Log("why");
                 _healthBar.ChangeHealth(currentHealth);
+                Debug.Log("Lop");
                 StartCoroutine("OnInvulnerable");
 
             }
@@ -108,7 +109,7 @@ public class PlayerHealth : MonoBehaviour
                 //deathmenu.ToggleEndMenu();
                 //player.GetComponent("PlayerMovement2").gameObject.SetActive(false);
             }
-            canbedamaged = true;
+            
             
         }
         //If Healthpickup then regen health and destroy pickup
@@ -138,7 +139,7 @@ public class PlayerHealth : MonoBehaviour
         canbedamaged = false;
 
         //blink.tookDamage();
-        yield return new WaitForSeconds(1.5f); //how long player invulnerable
+        yield return new WaitForSeconds(1.5f);
 
 
         canbedamaged = true;
